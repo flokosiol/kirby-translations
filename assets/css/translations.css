@@ -1,0 +1,47 @@
+.field-translations-wrapper {
+  padding-bottom: 1em;
+}
+
+.field-translations-wrapper li {
+  list-style: none;
+  display: inline;
+}
+
+.field-translations-wrapper a {
+  padding: 5px 10px;
+  margin-right: 10px;
+  border: 2px solid #ddd;
+  background: #efefef;
+}
+
+.field-translations-wrapper a {
+  color: #777;
+}
+
+.field-translations-wrapper a:hover {
+  color: #000;
+}
+
+.field-translations-wrapper .active a {
+  background: #fff;
+}
+
+.field-translations-wrapper i {
+  margin-left: 3px;
+}
+
+.field-translations-wrapper .translated a:hover {
+  border-color: #8dae28;
+}
+
+.field-translations-wrapper .translated i {
+  color: #8dae28;
+}
+
+.field-translations-wrapper .untranslated a:hover {
+  border-color: red;
+}
+
+.field-translations-wrapper .untranslated i {
+  color: red;
+}
