@@ -1,4 +1,4 @@
-<div id="<?php echo $field->id(); ?>" class="field-translations-wrapper">
+<div class="field-translations-wrapper">
   <ul class="cf">
     <?php foreach ($site->languages() as $language): ?>
       <li class="<?php e($field->isTranslated($language),'translated','untranslated'); ?><?php e($site->language() == $language, ' active') ?>">
@@ -9,4 +9,5 @@
       </li>
     <?php endforeach ?>
   </ul>
+
 </div>
