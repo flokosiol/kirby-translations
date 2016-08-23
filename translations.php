@@ -6,7 +6,7 @@
  * @package   Kirby CMS
  * @author    Flo Kosiol <git@flokosiol.de>
  * @link      http://flokosiol.de
- * @version   0.1
+ * @version   0.2
  */
 
 class translationsField extends CheckboxField {
@@ -30,14 +30,9 @@ class translationsField extends CheckboxField {
   }
 
   public function statusIcon($language) {
-    if ($this->isUptoDate($language)) {
-      return 'check';
-    }
-
     if ($this->isTranslated($language)) {
       return 'check';
-      // return 'circle-o';
-  }
+    }
     return 'times';
   }
 
@@ -46,6 +41,10 @@ class translationsField extends CheckboxField {
 
     if ($this->isTranslated($language)) {
       $classes[] = 'translated';
+      
+      if ($this->isUpToDate($language)) {
+        $classes[] = 'uptodate';
+      }
     }
     else {
       $classes[] = 'untranslated';
@@ -53,10 +52,6 @@ class translationsField extends CheckboxField {
 
     if ($this->page()->site()->language() == $language) {
       $classes[] = 'active';
-    }
-
-    if ($this->isUpToDate($language)) {
-      $classes[] = 'uptodate';
     }
 
     return implode(' ', $classes);
@@ -73,12 +68,19 @@ class translationsField extends CheckboxField {
   }
 
   public function content() {
+    $wrapper = new Brick('div');
+    $wrapper->addClass('field-translations-wrapper');
+
     $html = tpl::load( __DIR__ . DS . 'template.php', $data = array(
       'site' => $this->page()->site(),
       'page' => $this->page(),
       'field' => $this,
     ));
-    return $html . $this->input();
+
+    $wrapper->append($html);
+    $wrapper->append($this->input());
+
+    return $wrapper;
   }
 
 }

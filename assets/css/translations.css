@@ -2,16 +2,22 @@
   padding-bottom: 1em;
 }
 
+.field-translations-wrapper ul {
+  float: left;
+}
+
 .field-translations-wrapper li {
   list-style: none;
   display: inline;
 }
 
 .field-translations-wrapper a {
-  padding: 5px 10px;
-  margin-right: 10px;
+  display: inline-block;
+  padding: .5em 1em;
+  margin: 0 1em 1em 0;
   border: 2px solid #ddd;
   background: #efefef;
+  line-height: 1.5em;
 }
 
 .field-translations-wrapper a {
@@ -53,4 +59,12 @@
 
 .field-translations-wrapper .uptodate i {
   color: #8dae28;
+}
+
+.field-translations-wrapper label.input {
+  display: block;
+  width: auto;
+  padding-right: 1em;
+  min-width: 15em;
+  background: none;
 }
