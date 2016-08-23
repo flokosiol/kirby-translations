@@ -10,75 +10,75 @@
  */
 
 class translationsField extends CheckboxField {
-	
-	public static $assets = array(
-	  'css' => array(
-	    'translations.css',
-	  ),
-	);
 
-	// Helper
+  public static $assets = array(
+    'css' => array(
+      'translations.css',
+    ),
+  );
 
-	public function isTranslated($language) {
-		$inventory = $this->page()->inventory();
-		return isset($inventory['content'][$language->code()]) ? TRUE : FALSE;
-	}
+  // Helper
 
-	public function isUpToDate($language) {
-		$name = $this->name();
-		return $this->page()->content($language->code())->$name()->value();
-	}
-	
-	public function statusIcon($language) {
-		if ($this->isUptoDate($language)) {
-			return 'check';
-		}
+  public function isTranslated($language) {
+    $inventory = $this->page()->inventory();
+    return isset($inventory['content'][$language->code()]) ? TRUE : FALSE;
+  }
 
-		if ($this->isTranslated($language)) {
-			return 'check';
-			// return 'circle-o';
-		}
-		return 'times';
-	}
+  public function isUpToDate($language) {
+    $name = $this->name();
+    return $this->page()->content($language->code())->$name()->value();
+  }
 
-	public function cssClasses($language) {
-		$classes = array();
+  public function statusIcon($language) {
+    if ($this->isUptoDate($language)) {
+      return 'check';
+    }
 
-		if ($this->isTranslated($language)) {
-			$classes[] = 'translated';
-		}
-		else {
-			$classes[] = 'untranslated';
-		}
+    if ($this->isTranslated($language)) {
+      return 'check';
+      // return 'circle-o';
+  }
+    return 'times';
+  }
 
-		if ($this->page()->site()->language() == $language) {
-			$classes[] = 'active';
-		}
+  public function cssClasses($language) {
+    $classes = array();
 
-		if ($this->isUpToDate($language)) {
-			$classes[] = 'uptodate';
-		}
+    if ($this->isTranslated($language)) {
+      $classes[] = 'translated';
+    }
+    else {
+      $classes[] = 'untranslated';
+    }
 
-		return implode(' ', $classes);
-	}
+    if ($this->page()->site()->language() == $language) {
+      $classes[] = 'active';
+    }
 
-	// Field setup
+    if ($this->isUpToDate($language)) {
+      $classes[] = 'uptodate';
+    }
 
-	public function text() {
-		return 'Translation is up to date';
-	}
+    return implode(' ', $classes);
+  }
 
-	public function readonly() {
-		return false;
-	}
+  // Field setup
 
-	public function content() {
-		$html = tpl::load( __DIR__ . DS . 'template.php', $data = array(
-			'site' => $this->page()->site(),
-			'page' => $this->page(),
-			'field' => $this,
-		));
-		return $html . $this->input();
-	}
+  public function text() {
+    return 'Translation is up to date';
+  }
+
+  public function readonly() {
+    return false;
+  }
+
+  public function content() {
+    $html = tpl::load( __DIR__ . DS . 'template.php', $data = array(
+      'site' => $this->page()->site(),
+      'page' => $this->page(),
+      'field' => $this,
+    ));
+    return $html . $this->input();
+  }
 
 }
