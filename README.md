@@ -17,7 +17,11 @@ With this field plugin for [Kirby 2](http://getkirby.com) you can display the tr
 
 ### Kirby CLI
 
-Coming soon …
+If you are using the [Kirby CLI](https://github.com/getkirby/cli) you can install this field plugin by running the following command in your shell from the root folder of your Kirby installation:
+
+```
+kirby plugin:install flokosiol/kirby-translations
+```
 
 ### Copy & Paste
 
