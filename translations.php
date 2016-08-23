@@ -17,13 +17,55 @@ class translationsField extends CheckboxField {
 	  ),
 	);
 
+	// Helper
+
 	public function isTranslated($language) {
 		$inventory = $this->page()->inventory();
 		return isset($inventory['content'][$language->code()]) ? TRUE : FALSE;
 	}
 
+	public function isUpToDate($language) {
+		$name = $this->name();
+		return $this->page()->content($language->code())->$name()->value();
+	}
+	
+	public function statusIcon($language) {
+		if ($this->isUptoDate($language)) {
+			return 'check';
+		}
+
+		if ($this->isTranslated($language)) {
+			return 'check';
+			// return 'circle-o';
+		}
+		return 'times';
+	}
+
+	public function cssClasses($language) {
+		$classes = array();
+
+		if ($this->isTranslated($language)) {
+			$classes[] = 'translated';
+		}
+		else {
+			$classes[] = 'untranslated';
+		}
+
+		if ($this->page()->site()->language() == $language) {
+			$classes[] = 'active';
+		}
+
+		if ($this->isUpToDate($language)) {
+			$classes[] = 'uptodate';
+		}
+
+		return implode(' ', $classes);
+	}
+
+	// Field setup
+
 	public function text() {
-		return 'Translation up to date';
+		return 'Translation is up to date';
 	}
 
 	public function readonly() {

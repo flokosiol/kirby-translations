@@ -30,18 +30,27 @@
   margin-left: 3px;
 }
 
-.field-translations-wrapper .translated a:hover {
-  border-color: #8dae28;
-}
-
-.field-translations-wrapper .translated i {
-  color: #8dae28;
-}
-
 .field-translations-wrapper .untranslated a:hover {
   border-color: red;
 }
 
 .field-translations-wrapper .untranslated i {
   color: red;
+}
+
+.field-translations-wrapper .translated a:hover {
+  border-color: orange;
+}
+
+.field-translations-wrapper .translated i {
+  color: orange;
+}
+
+
+.field-translations-wrapper .uptodate a:hover {
+  border-color: #8dae28;
+}
+
+.field-translations-wrapper .uptodate i {
+  color: #8dae28;
 }
