@@ -5,6 +5,7 @@
         <?php echo str::upper($language->code()) ?>
         <i class="fa fa-<?php echo $field->statusIcon($language); ?>"></i>
       </a>
+      <i class="delete fa fa-trash"></i>
     </li>
   <?php endforeach ?>
 </ul>

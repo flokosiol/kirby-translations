@@ -17,7 +17,25 @@ class translationsField extends CheckboxField {
     ),
   );
 
+  // Field setup
+
+  public function text() {
+    return 'Translation is up to date';
+  }
+
+  public function readonly() {
+    return false;
+  }
+
   // Helper
+
+  public function deleteTranslation($language) {
+    if ($language->code() != $this->page()->site()->defaultLanguage()->code()) {
+      $textfile = $this->page->textfile(NULL, $language->code());
+      f::remove($textfile);
+    }
+    return;
+  }
 
   public function isTranslated($language) {
     $inventory = $this->page()->inventory();
@@ -54,18 +72,14 @@ class translationsField extends CheckboxField {
       $classes[] = 'active';
     }
 
+    if ($this->page()->site()->defaultLanguage()->code() == $language->code()) {
+      $classes[] = 'default';
+    }
+
     return implode(' ', $classes);
   }
 
-  // Field setup
-
-  public function text() {
-    return 'Translation is up to date';
-  }
-
-  public function readonly() {
-    return false;
-  }
+  // Content
 
   public function content() {
     $wrapper = new Brick('div');
