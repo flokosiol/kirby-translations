@@ -11,23 +11,31 @@
 
 $kirby->set('field', 'translations', __DIR__ . DS . 'fields' . DS . 'translations');
 
+
 // Routes
 
 if (site()->user()) {
   kirby()->routes(array(
     array(
-      'pattern' => 'translations.delete/(:all)',
-      'action'  => function($uri) {
-        if (s::get('lang') == get('lang') ) {
-          $languageCode = esc(get('lang')); // maybe no need to escape
-          $page = page($uri);
-          $textfile = $page->textfile(NULL, $languageCode);
-          f::remove($textfile);
-          $back_url = '/panel/pages/' . $page->id() . '/edit';
-          go($back_url);
+      'pattern' => 'translations.ajax.delete',
+      'action'  => function() {
+        if (r::ajax()) {
+          $id = get('id');
+          $language = get('language');
+          $page = page($id);
+
+          f::remove($page->textfile(NULL, $language));
+
+          return response::json(array(
+            'success' => true,
+            'language' => $language,
+          ));
         }
-        go(site()->errorPage());
+        else {
+          go(site()->errorPage());
+        }
       }
     ),
   ));
 }
+

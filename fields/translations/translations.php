@@ -15,6 +15,9 @@ class translationsField extends CheckboxField {
     'css' => array(
       'translations.css',
     ),
+    'js' => array(
+      'translations.js',
+    ),
   );
 
   // Field setup
@@ -28,14 +31,6 @@ class translationsField extends CheckboxField {
   }
 
   // Helper
-
-  public function deleteTranslation($languageCode) {
-    if ($languageCode != $this->page()->site()->defaultLanguage()->code()) {
-      $textfile = $this->page->textfile(NULL, $languageCode);
-      f::remove($textfile);
-    }
-    return;
-  }
 
   public function isTranslated($language) {
     $inventory = $this->page()->inventory();
