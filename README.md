@@ -1,6 +1,10 @@
-# Kirby 2 // Translations Field
+# Kirby Translations
 
 With this field plugin for [Kirby 2](http://getkirby.com) you can display the translation status for pages in the panel. 
+
+## Please notice
+
+This is just the first version and a rather basic implementation. There's a lot of new stuff going on at the [develop](https://github.com/flokosiol/kirby-translations/tree/develop) branch. So please stay tuned to get the latest news :)
 
 ## Preview
 
