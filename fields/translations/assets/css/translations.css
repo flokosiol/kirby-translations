@@ -39,18 +39,18 @@
 }
 
 .field-translations-wrapper .untranslated .language-tab:hover {
-  border-color: red;
+  border-color: #b3000a;
 }
 
-.field-translations-wrapper .untranslated i {
-  color: red;
+.field-translations-wrapper .untranslated .language-tab i {
+  color: #b3000a;
 }
 
 .field-translations-wrapper .translated .language-tab:hover {
   border-color: orange;
 }
 
-.field-translations-wrapper .translated i {
+.field-translations-wrapper .translated .language-tab i {
   color: orange;
 }
 
@@ -59,19 +59,50 @@
   border-color: #8dae28;
 }
 
-.field-translations-wrapper .uptodate i {
+.field-translations-wrapper .uptodate .language-tab i {
   color: #8dae28;
 }
 
 .field-translations-wrapper .delete,
-.field-translations-wrapper .untranslated.active .delete,
-.field-translations-wrapper .default.active .delete {
+.field-translations-wrapper .translations-delete,
+.field-translations-wrapper .translations-delete-confirm,
+.field-translations-wrapper .untranslated.active .delete {
   display: none;
 }
 
-.field-translations-wrapper .active .delete {
+.field-translations-wrapper .active.translated .delete,
+.field-translations-wrapper .active.translated .delete i,
+.field-translations-wrapper .active.translated .translations-delete {
   display: inline;
   color: #777;
+}
+
+.field-translations-wrapper .active.translated.default .translations-delete {
+  display: none;
+}
+
+.field-translations-wrapper .active .translations-delete-confirm {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(239,239,239,0.85);
+  /*background: #efefef;*/
+  text-align: center;
+  padding-top: 5px;
+}
+
+.field-translations-wrapper .active .translations-delete-confirm .btn {
+  background: #efefef;
+}
+
+.field-translations-wrapper .active .translations-delete-confirm .btn:hover {
+  background: black;
+}
+
+.field-translations-wrapper .active .translations-delete-confirm .btn-negative:hover {
+  background: #b3000a;
 }
 
 .field-translations-wrapper label.input {
