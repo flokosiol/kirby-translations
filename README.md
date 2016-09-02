@@ -1,16 +1,32 @@
 # Kirby Translations
 
-![Version](https://img.shields.io/badge/version-0.3-green.svg)
+![Version](https://img.shields.io/badge/Version-0.3-green.svg) ![Kirby](https://img.shields.io/badge/Kirby-2.3+-red.svg)
 
-With this plugin for [Kirby 2](http://getkirby.com) you can display the translation status for pages in the panel. At the moment there are 3 possible states:
+This plugin enhaces the translation handling for [Kirby 2](http://getkirby.com) with the following features:
+
++ possibility to delete translations
++ handle and display the translation status for pages in the panel
+
+## Please notice
+
+There's a [known issue](https://github.com/getkirby/panel/issues/910), where the state of a checkbox isn't displayed properly. There might be a fix for [Kirby 2.4](https://github.com/getkirby/panel/milestone/6).
+
+Since **version 0.3** Kirby Translations comes as **plugin**, not as a field. Keep that in mind if you are updating from a previous version.
+
+
+## Preview
+
+![Screenshot](screenshot.png)
+
+## How it works
+
+The plugin automatically detects if there's a language `.txt` file and displays an icon within the language tabs. By using checkbox you can manually define whether the translation for this page is up to date or not. This ends up in a **green** or **orange** checkmark. To sum it up, there are three possible states: 
 
 + **RED**: The translated `.txt`-file does not exist
 + **YELLOW**: The translated `.txt`-file exists, but the content is not up to date (checkbox unchecked)
 + **GREEN**: The translated `.txt`-file exists and the content is up to date (checkbox checked)
 
-## Preview
-
-![Screenshot](screenshot.png)
+Furthermore you can delete a translation without deleting the whole page.
 
 
 ## Installation
@@ -40,7 +56,7 @@ It is possible to add this plugin as a Git submodule.
 
 ```
 $ cd your/project/root  
-$ git submodule add https://github.com/flokosiol/kirby-translations.git site/plugins/translations
+$ git submodule add https://github.com/flokosiol/kirby-translations site/plugins/translations
 ```
 
 For more information, have a look at [Working with Git](https://getkirby.com/docs/cookbook/working-with-git) in the Kirby cookbook.
@@ -57,3 +73,9 @@ fields:
     type: translations
 ...
 ```
+
+## Roadmap and ideas
+
+- [ ] add filtering example to README
+- [ ] option to activate/deactivate up to date checkbox
+- [ ] option to activate/deactivate delete functionality
