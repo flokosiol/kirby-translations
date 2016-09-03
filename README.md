@@ -77,6 +77,5 @@ fields:
 ## Roadmap and ideas
 
 - [ ] add filtering example to README
-- [ ] add translations for text
 - [ ] option to activate/deactivate up to date checkbox
 - [ ] option to activate/deactivate delete functionality
