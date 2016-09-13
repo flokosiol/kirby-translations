@@ -1,6 +1,6 @@
 # Kirby Translations
 
-![Version](https://img.shields.io/badge/Version-0.3-green.svg) ![Kirby](https://img.shields.io/badge/Kirby-2.3+-red.svg)
+![Version](https://img.shields.io/badge/Version-0.4-green.svg) ![Kirby](https://img.shields.io/badge/Kirby-2.3+-red.svg)
 
 This plugin enhaces the translation handling for [Kirby 2](http://getkirby.com) with the following features:
 
@@ -74,9 +74,22 @@ fields:
 ...
 ```
 
+### Optional settings
+
+If you like, you can disable the checkbox (and with it the orange status) and/or the possibility to delete translations with the following setup.
+
+```
+...
+fields:
+  mytranslations:
+    type: translations
+    deletable: false
+    uptodate: false
+...
+```
 ## Roadmap and ideas
 
 - [ ] add filtering example to README
 - [ ] add translations for text
-- [ ] option to activate/deactivate up to date checkbox
-- [ ] option to activate/deactivate delete functionality
+- [x] ~~option to activate/deactivate up to date checkbox~~
+- [x] ~~option to activate/deactivate delete functionality~~

@@ -6,10 +6,16 @@
  * @package   Translations Plugin
  * @author    Flo Kosiol <git@flokosiol.de>
  * @link      http://flokosiol.de
- * @version   0.3
+ * @version   0.4
  */
 
 class translationsField extends CheckboxField {
+
+  public function __construct() {
+    $this->icon = false;
+    $this->deletable = true;
+    $this->uptodate = true;
+  }
 
   public static $assets = array(
     'css' => array(
@@ -20,10 +26,30 @@ class translationsField extends CheckboxField {
     ),
   );
 
-  // Field setup
+  /**
+   * Set field property and default value if required
+   *
+   * @param string $option
+   * @param mixed  $value
+   */
+  public function __set($option, $value) {
+
+    $this->$option = $value;
+
+    switch ($option) {
+      case 'uptodate':
+        if (!is_bool($value))
+          $this->uptodate = true;
+        break;
+      case 'deletable':
+        if (!is_bool($value))
+          $this->deletable = true;
+        break;
+    }
+  }
 
   public function text() {
-    return 'Translation is up to date';
+    return l::get('translations.uptodate.text', 'Translation is up to date');
   }
 
   public function readonly() {
@@ -37,10 +63,17 @@ class translationsField extends CheckboxField {
     return isset($inventory['content'][$language->code()]) ? TRUE : FALSE;
   }
 
+
   public function isUpToDate($language) {
+    // if uptodate is disabled always return '1' to display a green checkmark
+    if (!$this->uptodate) {
+      return '1';
+    }
+
     $name = $this->name();
     return $this->page()->content($language->code())->$name()->value();
   }
+
 
   public function statusIcon($language) {
     if ($this->isTranslated($language)) {
@@ -48,6 +81,7 @@ class translationsField extends CheckboxField {
     }
     return 'times';
   }
+
 
   public function cssClasses($language) {
     $classes = array();
@@ -87,7 +121,11 @@ class translationsField extends CheckboxField {
     ));
 
     $wrapper->append($html);
-    $wrapper->append($this->input());
+
+    // display checkbox if uptodate isn't disabled via blueprint
+    if ($this->uptodate) {
+      $wrapper->append($this->input());
+    }
 
     return $wrapper;
   }
