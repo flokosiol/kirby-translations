@@ -91,7 +91,7 @@ fields:
 
 - [ ] add filtering example to README
 - [ ] add translations for text
-- [ ] add widget with translations overwiev
+- [ ] add widget with translations overview
 - [ ] add widget with list of untranslated pages
 - [x] ~~option to activate/deactivate up to date checkbox~~
 - [x] ~~option to activate/deactivate delete functionality~~
