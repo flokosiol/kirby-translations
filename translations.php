@@ -10,7 +10,7 @@
  */
 
 $kirby->set('field', 'translations', __DIR__ . DS . 'fields' . DS . 'translations');
-
+$kirby->set('widget', 'translations', __DIR__ . DS . 'widgets' . DS . 'translations');
 
 // Routes
 

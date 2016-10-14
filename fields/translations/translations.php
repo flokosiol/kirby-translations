@@ -60,7 +60,7 @@ class translationsField extends CheckboxField {
 
   public function isTranslated($language) {
     $inventory = $this->page()->inventory();
-    return isset($inventory['content'][$language->code()]) ? TRUE : FALSE;
+    return isset($inventory['content'][$language->code()]) ? true : false;
   }
 
 
