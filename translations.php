@@ -14,28 +14,20 @@ $kirby->set('widget', 'translations', __DIR__ . DS . 'widgets' . DS . 'translati
 
 // Routes
 
-if (site()->user()) {
-  kirby()->routes(array(
+if (class_exists('Panel') && site()->user() && site()->user()->hasPanelAccess()) {
+  panel()->routes(array(
     array(
-      'pattern' => 'translations.ajax.delete',
-      'action'  => function() {
-        if (r::ajax()) {
-          $id = get('id');
-          $language = get('language');
-          $page = page($id);
-
-          f::remove($page->textfile(NULL, $language));
-
-          return response::json(array(
-            'success' => true,
-            'language' => $language,
-          ));
+      'pattern' => 'plugin.translations/(:any)/(:all)',
+      'action' => function($language, $id) {
+        $page = page($id);
+        if (f::remove($page->textfile(NULL, $language))) {
+          panel()->notify(strtoupper($language) . ' deleted');
         }
         else {
-          go(site()->errorPage());
+          panel()->alert('Translation could not be deleted');
         }
+        panel()->redirect('pages/'. $id . '/edit');
       }
-    ),
+    )
   ));
 }
-
