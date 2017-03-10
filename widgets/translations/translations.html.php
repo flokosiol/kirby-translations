@@ -2,12 +2,12 @@
   @media screen and (min-width: 640px) {
     #translations-widget {
       min-height: 400px;
-    }  
+    }
   }
 </style>
 
 <?php if ($items->count()): ?>
-  
+
   <ul class="nav nav-list sidebar-list">
     <?php foreach ($items as $item): ?>
       <?php #<?php # panel/app/snippets/pages/sidebar/subpage.php ?>
@@ -30,7 +30,7 @@
         <select onchange="app.content.open(this.value)">
           <?php foreach(range(1, $items->pagination()->pages()) as $p): ?>
           <option value="<?php echo $items->pagination()->pageUrl($p) ?>"<?php e($p == $items->pagination()->page(), ' selected') ?>><?php echo $p ?></option>
-          <?php endforeach ?> 
+          <?php endforeach ?>
         </select>
       </span>
       <a class="pagination-next<?php e(!$items->pagination()->hasNextPage(), ' pagination-inactive') ?>" href="<?php echo $items->pagination()->nextPageURL() ?>"><?php i('chevron-right') ?></a>

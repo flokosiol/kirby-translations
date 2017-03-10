@@ -1,15 +1,15 @@
-<?php 
+<?php
 
 $options = array();
-$languages = panel()->site()->languages();
+// $languages = panel()->site()->languages();
 
-foreach ($languages as $language) {
-  $options[] = array(
-    'text' => str::upper($language->code()),
-    'icon' => false,
-    'link' => url('panel') . '?language=' . $language->code(),
-  );
-}
+// foreach ($languages as $language) {
+//   $options[] = array(
+//     'text' => str::upper($language->code()),
+//     'icon' => false,
+//     'link' => url('panel') . '?language=' . $language->code(),
+//   );
+// }
 
 return array(
   'title' => l::get('translations.widget.headline','Missing Translations') . ' (' . str::upper(site()->language()->code()) . ')',
