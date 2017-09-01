@@ -11,4 +11,16 @@ $(function(){
     e.preventDefault();
     return false;
   });
+
+  $(document).on('click','.translations-update',function (e) {
+    $(this).next('.translations-update-confirm').fadeIn();
+    e.preventDefault();
+    return false;
+  });
+
+  $(document).on('click','.translations-update-cancel-btn',function (e) {
+    $(this).parent('.translations-update-confirm').fadeOut();
+    e.preventDefault();
+    return false;
+  });
 });
