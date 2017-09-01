@@ -37,8 +37,7 @@ if (class_exists('Panel') && site()->user() && site()->user()->hasPanelAccess())
         $default = site()->defaultLanguage()->code();
 
         if ($mainContent = f::read($page->textfile(NULL, $default))) {
-	        if (f::remove($file) && f::write($file, $mainContent)) {
-	        	var_dump($mainContent);
+	        if (f::write($file, $mainContent)) {
 	        	panel()->notify(strtoupper($language) . ' updated');
 	        }
 	        else {
