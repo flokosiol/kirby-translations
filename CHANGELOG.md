@@ -1,10 +1,13 @@
 # Changelog
 
 
-[+] added  
-[o] changed  
-[–] removed  
+[+] added
+[o] changed
+[–] removed
 
+## 0.5
+
++ [+] option to resynchronize translations with the default language file
 
 ## 0.4
 

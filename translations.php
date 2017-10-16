@@ -6,11 +6,11 @@
  * @package   Kirby CMS
  * @author    Flo Kosiol <git@flokosiol.de>
  * @link      http://flokosiol.de
- * @version   0.4
+ * @version   0.5
  */
 
 $kirby->set('field', 'translations', __DIR__ . DS . 'fields' . DS . 'translations');
-$kirby->set('widget', 'translations', __DIR__ . DS . 'widgets' . DS . 'translations');
+// $kirby->set('widget', 'translations', __DIR__ . DS . 'widgets' . DS . 'translations');
 
 // Routes
 

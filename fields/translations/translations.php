@@ -6,7 +6,7 @@
  * @package   Translations Plugin
  * @author    Flo Kosiol <git@flokosiol.de>
  * @link      http://flokosiol.de
- * @version   0.4
+ * @version   0.5
  */
 
 class translationsField extends CheckboxField {
@@ -89,7 +89,7 @@ class translationsField extends CheckboxField {
 
     if ($this->isTranslated($language)) {
       $classes[] = 'translated';
-      
+
       if ($this->isUpToDate($language)) {
         $classes[] = 'uptodate';
       }

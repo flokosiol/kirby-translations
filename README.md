@@ -1,6 +1,6 @@
 # Kirby Translations
 
-![Version](https://img.shields.io/badge/Version-0.4-green.svg) ![Kirby](https://img.shields.io/badge/Kirby-2.3+-red.svg)
+![Version](https://img.shields.io/badge/Version-0.5-green.svg) ![Kirby](https://img.shields.io/badge/Kirby-2.3+-red.svg)
 
 This plugin enhaces the translation handling for [Kirby 2](http://getkirby.com) with the following features:
 
@@ -10,9 +10,9 @@ This plugin enhaces the translation handling for [Kirby 2](http://getkirby.com) 
 
 ## Please notice
 
-There's a [known issue](https://github.com/getkirby/panel/issues/910), where the state of a checkbox isn't displayed properly. There might be a fix for [Kirby 2.4](https://github.com/getkirby/panel/milestone/6).
+There was a [known issue](https://github.com/getkirby/panel/issues/910) for Kirby 2.3.x, where the state of a checkbox isn't displayed properly. This was fixed for Kirby 2.4.
 
-Since **version 0.3** Kirby Translations comes as **plugin**, not as a field. Keep that in mind if you are updating from a previous version.
+As of **version 0.3** Kirby Translations comes as **plugin**, not as a field. Keep that in mind if you are updating from a previous version.
 
 
 ## Preview
@@ -21,7 +21,7 @@ Since **version 0.3** Kirby Translations comes as **plugin**, not as a field. Ke
 
 ## How it works
 
-The plugin automatically detects if there's a language `.txt` file and displays an icon within the language tabs. By using checkbox you can manually define whether the translation for this page is up to date or not. This ends up in a **green** or **orange** checkmark. To sum it up, there are three possible states: 
+The plugin automatically detects if there's a language `.txt` file and displays an icon within the language tabs. By using checkbox you can manually define whether the translation for this page is up to date or not. This ends up in a **green** or **orange** checkmark. To sum it up, there are three possible states:
 
 + **RED**: The translated `.txt`-file does not exist
 + **YELLOW**: The translated `.txt`-file exists, but the content is not up to date (checkbox unchecked)
@@ -56,7 +56,7 @@ site/
 It is possible to add this plugin as a Git submodule.
 
 ```
-$ cd your/project/root  
+$ cd your/project/root
 $ git submodule add https://github.com/flokosiol/kirby-translations site/plugins/translations
 ```
 
@@ -65,7 +65,7 @@ For more information, have a look at [Working with Git](https://getkirby.com/doc
 
 ## Usage
 
-Now you are ready to use the new field `translations` in your blueprints. 
+Now you are ready to use the new field `translations` in your blueprints.
 
 ```
 ...
@@ -97,3 +97,7 @@ fields:
 - [ ] add widget with list of untranslated pages
 - [x] ~~option to activate/deactivate up to date checkbox~~
 - [x] ~~option to activate/deactivate delete functionality~~
+
+## Credits
+
+Thanks to [Sylvain](https://github.com/sylvainjule) for the idea and the development of the sync functionality.
