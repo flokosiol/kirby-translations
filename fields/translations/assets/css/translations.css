@@ -66,22 +66,31 @@
 .field-translations-wrapper .delete,
 .field-translations-wrapper .translations-delete,
 .field-translations-wrapper .translations-delete-confirm,
-.field-translations-wrapper .untranslated.active .delete {
+.field-translations-wrapper .untranslated.active .delete,
+.field-translations-wrapper .update,
+.field-translations-wrapper .translations-update,
+.field-translations-wrapper .translations-update-confirm,
+.field-translations-wrapper .untranslated.active .update {
   display: none;
 }
 
 .field-translations-wrapper .active.translated .delete,
 .field-translations-wrapper .active.translated .delete i,
-.field-translations-wrapper .active.translated .translations-delete {
+.field-translations-wrapper .active.translated .translations-delete,
+.field-translations-wrapper .active.translated .update,
+.field-translations-wrapper .active.translated .update i,
+.field-translations-wrapper .active.translated .translations-update {
   display: inline;
   color: #777;
 }
 
-.field-translations-wrapper .active.translated.default .translations-delete {
+.field-translations-wrapper .active.translated.default .translations-delete, 
+.field-translations-wrapper .active.translated.default .translations-update {
   display: none;
 }
 
-.field-translations-wrapper .active .translations-delete-confirm {
+.field-translations-wrapper .active .translations-delete-confirm, 
+.field-translations-wrapper .active .translations-update-confirm {
   position: absolute;
   top: 0;
   right: 0;
@@ -93,16 +102,23 @@
   padding-top: 5px;
 }
 
-.field-translations-wrapper .active .translations-delete-confirm .btn {
+.field-translations-wrapper .active .translations-delete-confirm .btn, 
+.field-translations-wrapper .active .translations-update-confirm .btn {
   background: #efefef;
 }
 
-.field-translations-wrapper .active .translations-delete-confirm .btn:hover {
+.field-translations-wrapper .active .translations-delete-confirm .btn:hover, 
+.field-translations-wrapper .active .translations-update-confirm .btn:hover {
   background: black;
 }
 
-.field-translations-wrapper .active .translations-delete-confirm .btn-negative:hover {
+.field-translations-wrapper .active .translations-delete-confirm .btn-negative:hover, 
+.field-translations-wrapper .active .translations-update-confirm .btn-negative:hover {
   background: #b3000a;
+}
+
+.field-translations-wrapper .translations-update-alert {
+  margin-top: 5px;
 }
 
 .field-translations-wrapper label.input {

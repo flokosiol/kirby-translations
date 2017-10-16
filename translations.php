@@ -28,6 +28,27 @@ if (class_exists('Panel') && site()->user() && site()->user()->hasPanelAccess())
         }
         panel()->redirect('pages/'. $id . '/edit');
       }
+    ),
+    array(
+      'pattern' => 'plugin.translations.update/(:any)/(:all)',
+      'action' => function($language, $id) {
+        $page = page($id);
+        $file = $page->textfile(NULL, $language);
+        $default = site()->defaultLanguage()->code();
+
+        if ($mainContent = f::read($page->textfile(NULL, $default))) {
+	        if (f::write($file, $mainContent)) {
+	        	panel()->notify(strtoupper($language) . ' updated');
+	        }
+	        else {
+	          panel()->alert('Translation could not be updated');
+	        }
+        }
+        else {
+          panel()->alert('Translation could not be updated');
+        }
+        panel()->redirect('pages/'. $id . '/edit');
+      }
     )
   ));
 }

@@ -5,6 +5,7 @@
 This plugin enhaces the translation handling for [Kirby 2](http://getkirby.com) with the following features:
 
 + possibility to delete translations
++ possibility to resynchronize translations with the default language file
 + handle and display the translation status for pages in the panel
 
 ## Please notice
@@ -76,7 +77,7 @@ fields:
 
 ### Optional settings
 
-If you like, you can disable the checkbox (and with it the orange status) and/or the possibility to delete translations with the following setup.
+If you like, you can disable the checkbox (and with it the orange status) and/or the possibility to delete or update translations with the following setup.
 
 ```
 ...
@@ -84,6 +85,7 @@ fields:
   mytranslations:
     type: translations
     deletable: false
+    updatable: false
     uptodate: false
 ...
 ```

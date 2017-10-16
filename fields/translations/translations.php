@@ -14,6 +14,7 @@ class translationsField extends CheckboxField {
   public function __construct() {
     $this->icon = false;
     $this->deletable = true;
+    $this->updatable = true;
     $this->uptodate = true;
   }
 
