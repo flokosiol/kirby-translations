@@ -8,6 +8,7 @@
 ## 0.5
 
 + [+] option to resynchronize translations with the default language file
++ [+] filter example in readme
 
 ## 0.4
 

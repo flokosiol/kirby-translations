@@ -89,14 +89,27 @@ fields:
     uptodate: false
 ...
 ```
+
+### Filter translated pages
+
+If you want to filter your pages and ignore untranslated ones you can do it this way – `mytranslations` is the key of the translations field:
+
+```
+<?php
+  $translatedPages = $pages->visible()->filterBy('mytranslations', '1')->filter(function($p) {
+    return $p->content(site()->language()->code())->exists();
+  });
+?>
+```
+
 ## Roadmap and ideas
 
-- [ ] add filtering example to README
-- [ ] add translations for text
+- [ ] add widget with list of untranslated pages (in progress)
 - [ ] add widget with translations overview
-- [ ] add widget with list of untranslated pages
+- [ ] add translations for text
 - [x] ~~option to activate/deactivate up to date checkbox~~
 - [x] ~~option to activate/deactivate delete functionality~~
+- [x] ~~add filtering example to README~~
 
 ## Credits
 
