@@ -5,6 +5,10 @@
 [o] changed
 [–] removed
 
+## 0.6
+
++ [o] change internal urls to delete/update translations
+
 ## 0.5
 
 + [+] option to resynchronize translations with the default language file

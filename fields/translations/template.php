@@ -12,7 +12,7 @@
 	            <i class="fa fa-refresh"></i>
 	          </a>
 	          <span class="translations-update-confirm">
-	            <a class="translations-update-confirm-btn btn btn-rounded btn-submit btn-negative" href="<?php echo panel()->urls()->index() ?>/plugin.translations.update/<?php echo $language->code() ?>/<?php echo $page->id() ?>">Sync <?php echo str::upper($language->code()) ?> with <?php echo str::upper($site->defaultLanguage()->code()) ?></a>
+	            <a class="translations-update-confirm-btn btn btn-rounded btn-submit btn-negative" href="<?php echo panel()->urls()->index() ?>/plugin-translations-update/<?php echo $language->code() ?>/<?php echo $page->id() ?>">Sync <?php echo str::upper($language->code()) ?> with <?php echo str::upper($site->defaultLanguage()->code()) ?></a>
 	            <a class="translations-update-cancel-btn btn btn-rounded btn-submit" href="#">Cancel</a>
 	            <p class="translations-update-alert">This will reset the file. All changes will be lost.</p>
 	          </span>
@@ -25,7 +25,7 @@
             <i class="fa fa-trash"></i>
           </a>
           <span class="translations-delete-confirm">
-            <a class="translations-delete-confirm-btn btn btn-rounded btn-submit btn-negative" href="<?php echo panel()->urls()->index() ?>/plugin.translations/<?php echo $language->code() ?>/<?php echo $page->id() ?>">Delete <?php echo str::upper($language->code()) ?></a>
+            <a class="translations-delete-confirm-btn btn btn-rounded btn-submit btn-negative" href="<?php echo panel()->urls()->index() ?>/plugin-translations-delete/<?php echo $language->code() ?>/<?php echo $page->id() ?>">Delete <?php echo str::upper($language->code()) ?></a>
             <a class="translations-delete-cancel-btn btn btn-rounded btn-submit" href="#">Cancel</a>
           </span>
         </span>

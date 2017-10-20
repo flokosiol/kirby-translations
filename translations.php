@@ -6,7 +6,7 @@
  * @package   Kirby CMS
  * @author    Flo Kosiol <git@flokosiol.de>
  * @link      http://flokosiol.de
- * @version   0.5
+ * @version   0.6
  */
 
 $kirby->set('field', 'translations', __DIR__ . DS . 'fields' . DS . 'translations');
@@ -17,7 +17,7 @@ $kirby->set('field', 'translations', __DIR__ . DS . 'fields' . DS . 'translation
 if (class_exists('Panel') && site()->user() && site()->user()->hasPanelAccess()) {
   panel()->routes(array(
     array(
-      'pattern' => 'plugin.translations/(:any)/(:all)',
+      'pattern' => 'plugin-translations-delete/(:any)/(:all)',
       'action' => function($language, $id) {
         $page = page($id);
         if (f::remove($page->textfile(NULL, $language))) {
@@ -30,7 +30,7 @@ if (class_exists('Panel') && site()->user() && site()->user()->hasPanelAccess())
       }
     ),
     array(
-      'pattern' => 'plugin.translations.update/(:any)/(:all)',
+      'pattern' => 'plugin-translations-update/(:any)/(:all)',
       'action' => function($language, $id) {
         $page = page($id);
         $file = $page->textfile(NULL, $language);

@@ -1,6 +1,6 @@
 # Kirby Translations
 
-![Version](https://img.shields.io/badge/Version-0.5-green.svg) ![Kirby](https://img.shields.io/badge/Kirby-2.3+-red.svg)
+![Version](https://img.shields.io/badge/Version-0.6-green.svg) ![Kirby](https://img.shields.io/badge/Kirby-2.3+-red.svg)
 
 This plugin enhaces the translation handling for [Kirby 2](http://getkirby.com) with the following features:
 
