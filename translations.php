@@ -6,7 +6,7 @@
  * @package   Kirby CMS
  * @author    Flo Kosiol <git@flokosiol.de>
  * @link      http://flokosiol.de
- * @version   0.6
+ * @version   0.7
  */
 
 $kirby->set('field', 'translations', __DIR__ . DS . 'fields' . DS . 'translations');
