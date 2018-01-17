@@ -109,6 +109,15 @@ class translationsField extends CheckboxField {
     return implode(' ', $classes);
   }
 
+  // Defines the panel language url argument, which changed with version 2.5.8
+  public function languageArgument() {
+    $version = intval(str_replace('.', '', panel()->version()));
+    if ($version <= 257) {
+      return 'language';
+    }
+    return '_language';
+  }
+
   // Content
 
   public function content() {
