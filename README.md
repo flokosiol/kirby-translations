@@ -102,6 +102,21 @@ If you want to filter your pages and ignore untranslated ones you can do it this
 ?>
 ```
 
+### Configuration
+
+If you want to rename the labels used troughout the plugin add an array like this to your config:
+
+```
+c::set('translations.translation', [
+  'en' => [
+    'lbl_is_up_to_date' => 'Custom up to date label',
+  ],
+  'de' => [
+    'btn_delete' => 'Lösch mich!',
+  ],
+]);
+```
+
 ## Roadmap and ideas
 
 - [ ] add widget with list of untranslated pages (in progress)

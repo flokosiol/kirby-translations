@@ -49,8 +49,31 @@ class translationsField extends CheckboxField {
     }
   }
 
+  public function translate($string)
+  {
+      $translations = require __DIR__ . DS . 'languages.php';
+      $custom_translations = c::get('translations.translation', []);
+      $language = site()->user()->data()['language'];
+
+      array_walk($translations, function (&$default, $lang, $custom) {
+          if (!empty($custom) && array_key_exists($lang, $custom)) {
+              $default = array_merge($default, $custom[$lang]);
+          }
+      }, $custom_translations);
+
+      $language = (array_key_exists($language, $translations))
+        ? $language
+        : 'en';
+
+      if (array_key_exists($string, $translations[$language])) {
+          $string = $translations[$language][$string];
+      }
+
+      return $string;
+  }
+
   public function text() {
-    return l::get('translations.uptodate.text', 'Translation is up to date');
+    return l::get('translations.uptodate.text', $this->translate('lbl_is_up_to_date');
   }
 
   public function readonly() {

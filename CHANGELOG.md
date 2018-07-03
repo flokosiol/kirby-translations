@@ -5,6 +5,10 @@
 [o] changed
 [–] removed
 
+## 0.8
+
++ [+] config option to translate plugin template strings
+
 ## 0.7
 
 + [o] fixes language switch for Kirby 2.5.8+

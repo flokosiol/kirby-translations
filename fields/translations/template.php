@@ -12,9 +12,9 @@
 	            <i class="fa fa-refresh"></i>
 	          </a>
 	          <span class="translations-update-confirm">
-	            <a class="translations-update-confirm-btn btn btn-rounded btn-submit btn-negative" href="<?php echo panel()->urls()->index() ?>/plugin-translations-update/<?php echo $language->code() ?>/<?php echo $page->id() ?>">Sync <?php echo str::upper($language->code()) ?> with <?php echo str::upper($site->defaultLanguage()->code()) ?></a>
-	            <a class="translations-update-cancel-btn btn btn-rounded btn-submit" href="#">Cancel</a>
-	            <p class="translations-update-alert">This will reset the file. All changes will be lost.</p>
+	            <a class="translations-update-confirm-btn btn btn-rounded btn-submit btn-negative" href="<?php echo panel()->urls()->index() ?>/plugin-translations-update/<?php echo $language->code() ?>/<?php echo $page->id() ?>"><?= $field->translate('sync') . ' ' . str::upper($language->code()) . ' ' . $field->translate('with') . ' ' .  str::upper($site->defaultLanguage()->code()) ?></a>
+	            <a class="translations-update-cancel-btn btn btn-rounded btn-submit" href="#"><?= $field->translate('btn_cancel') ?></a>
+	            <p class="translations-update-alert"><?= $field->translate('alert_update') ?></p>
 	          </span>
 	    </span>
 	<?php endif; ?>
@@ -25,8 +25,8 @@
             <i class="fa fa-trash"></i>
           </a>
           <span class="translations-delete-confirm">
-            <a class="translations-delete-confirm-btn btn btn-rounded btn-submit btn-negative" href="<?php echo panel()->urls()->index() ?>/plugin-translations-delete/<?php echo $language->code() ?>/<?php echo $page->id() ?>">Delete <?php echo str::upper($language->code()) ?></a>
-            <a class="translations-delete-cancel-btn btn btn-rounded btn-submit" href="#">Cancel</a>
+            <a class="translations-delete-confirm-btn btn btn-rounded btn-submit btn-negative" href="<?php echo panel()->urls()->index() ?>/plugin-translations-delete/<?php echo $language->code() ?>/<?php echo $page->id() ?>"><?= $field->translate('btn_delete') ?> <?php echo str::upper($language->code()) ?></a>
+            <a class="translations-delete-cancel-btn btn btn-rounded btn-submit" href="#"><?= $field->translate('btn_cancel') ?></a>
           </span>
         </span>
       <?php endif; ?>

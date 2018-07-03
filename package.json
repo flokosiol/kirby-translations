@@ -2,7 +2,7 @@
   "name": "translations",
   "description": "Translation field for Kirby CMS",
   "author": "Flo Kosiol <git@flokosiol.de>",
-  "version": "0.7",
+  "version": "0.8",
   "type": "kirby-plugin",
   "license": "MIT"
 }
