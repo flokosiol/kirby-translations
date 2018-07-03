@@ -104,7 +104,7 @@ If you want to filter your pages and ignore untranslated ones you can do it this
 
 ### Configuration options
 
-If you want to rename the labels used throughout the plugin add an array like this to your config:
+If you want to add and/or rename the labels used throughout the plugin add an array like this to your config:
 
 ```
 c::set('translations.translation', [
@@ -117,7 +117,9 @@ c::set('translations.translation', [
 ]);
 ```
 
-Available labels can be found in the `languages.php` file of the translations field.
+Available labels can be found in the `languages.php` file of the translations field. 
+
+When you add a new language, please keep in mind that your array key has to be the same as your Kirby `language.code` value.
 
 ## Roadmap and ideas
 
