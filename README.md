@@ -102,9 +102,9 @@ If you want to filter your pages and ignore untranslated ones you can do it this
 ?>
 ```
 
-### Configuration
+### Configuration options
 
-If you want to rename the labels used troughout the plugin add an array like this to your config:
+If you want to rename the labels used throughout the plugin add an array like this to your config:
 
 ```
 c::set('translations.translation', [
@@ -116,6 +116,8 @@ c::set('translations.translation', [
   ],
 ]);
 ```
+
+Available labels can be found in the `languages.php` file of the translations field.
 
 ## Roadmap and ideas
 
