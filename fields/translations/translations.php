@@ -73,7 +73,7 @@ class translationsField extends CheckboxField {
   }
 
   public function text() {
-    return l::get('translations.uptodate.text', $this->translate('lbl_is_up_to_date');
+    return l::get('translations.uptodate.text', $this->translate('lbl_is_up_to_date'));
   }
 
   public function readonly() {
