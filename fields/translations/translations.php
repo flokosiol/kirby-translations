@@ -6,7 +6,7 @@
  * @package   Translations Plugin
  * @author    Flo Kosiol <git@flokosiol.de>
  * @link      http://flokosiol.de
- * @version   0.7
+ * @version   0.8
  */
 
 class translationsField extends CheckboxField {

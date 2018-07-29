@@ -1,6 +1,6 @@
 # Kirby Translations
 
-![Version](https://img.shields.io/badge/Version-0.7-green.svg) ![Kirby](https://img.shields.io/badge/Kirby-2.3+-red.svg)
+![Version](https://img.shields.io/badge/Version-0.8-green.svg) ![Kirby](https://img.shields.io/badge/Kirby-2.3+-red.svg)
 
 This plugin enhaces the translation handling for [Kirby 2](http://getkirby.com) with the following features:
 
@@ -117,7 +117,7 @@ c::set('translations.translation', [
 ]);
 ```
 
-Available labels can be found in the `languages.php` file of the translations field. 
+Available labels can be found in the `languages.php` file of the translations field.
 
 When you add a new language, please keep in mind that your array key has to be the same as your Kirby `language.code` value.
 
