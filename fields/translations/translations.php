@@ -49,7 +49,7 @@ class translationsField extends CheckboxField {
     }
   }
 
-  public function translate($string)
+  public function translate($string = '')
   {
       $translations = require __DIR__ . DS . 'languages.php';
       $custom_translations = c::get('translations.translation', []);
