@@ -16,8 +16,7 @@ panel.plugin('flokosiol/translations', {
           return this.$store.state.languages.current;
         },
         languages() {
-          // return this.$store.state.languages.all.filter(language => language.default === false);
-          return this.$store.state.languages.all;
+          return this.$store.state.languages.all.filter(language => language.default === false);
         }
       },
       created: function() {
@@ -53,6 +52,9 @@ panel.plugin('flokosiol/translations', {
         <div class="k-field k-translations-field">
           <div v-if="languages.length">
             <k-button-group>
+              <k-button icon="check" theme="positive" :key="defaultLanguage.code" @click="change(defaultLanguage)">
+                  {{ defaultLanguage.name }}
+              </k-button>
               <k-button v-for="language in languages" :icon="language.icon" :theme="language.theme" :key="language.code" @click="change(language)">
                 {{ language.name }}
               </k-button>
