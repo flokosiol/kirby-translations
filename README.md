@@ -1,135 +1,43 @@
-# Kirby Translations
+## How to use the Pluginkit
 
-![Version](https://img.shields.io/badge/Version-0.8-green.svg) ![Kirby](https://img.shields.io/badge/Kirby-2.3+-red.svg)
+6. Require Composer dependencies with `composer require`
 
-This plugin enhaces the translation handling for [Kirby 2](http://getkirby.com) with the following features:
-
-+ possibility to delete translations
-+ possibility to resynchronize translations with the default language file
-+ handle and display the translation status for pages in the panel
-
-## Please notice
-
-There was a [known issue](https://github.com/getkirby/panel/issues/910) for Kirby 2.3.x, where the state of a checkbox isn't displayed properly. This was fixed for Kirby 2.4.
-
-As of **version 0.3** Kirby Translations comes as **plugin**, not as a field. Keep that in mind if you are updating from a previous version.
-
-
-## Preview
-
-![Screenshot](screenshot.png)
-
-## How it works
-
-The plugin automatically detects if there's a language `.txt` file and displays an icon within the language tabs. By using checkbox you can manually define whether the translation for this page is up to date or not. This ends up in a **green** or **orange** checkmark. To sum it up, there are three possible states:
-
-+ **RED**: The translated `.txt`-file does not exist
-+ **YELLOW**: The translated `.txt`-file exists, but the content is not up to date (checkbox unchecked)
-+ **GREEN**: The translated `.txt`-file exists and the content is up to date (checkbox checked)
-
-Furthermore you can delete a translation without deleting the whole page.
-
+****
 
 ## Installation
 
-### Kirby CLI
+### Download
 
-If you are using the [Kirby CLI](https://github.com/getkirby/cli) you can install this field plugin by running the following command in your shell from the root folder of your Kirby installation:
+Download and copy this repository to `/site/plugins/{{ plugin-name }}`.
 
-```
-kirby plugin:install flokosiol/kirby-translations
-```
-
-### Copy & Paste
-
-Add (if necessary) a new `plugins` folder to your `site` directory. Then copy the whole content of this repository in a new folder called `translations`. Your directory structure should now look like this:
+### Git submodule
 
 ```
-site/
-  plugins/
-    translations/
-      ...
+git submodule add https://github.com/{{ your-name }}/{{ plugin-name }}.git site/plugins/{{ plugin-name }}
 ```
 
-### Git Submodule
-
-It is possible to add this plugin as a Git submodule.
+### Composer
 
 ```
-$ cd your/project/root
-$ git submodule add https://github.com/flokosiol/kirby-translations site/plugins/translations
+composer require {{ your-name }}/{{ plugin-name }}
 ```
 
-For more information, have a look at [Working with Git](https://getkirby.com/docs/cookbook/working-with-git) in the Kirby cookbook.
+## Setup
 
+*Additional instructions on how to configure the plugin (e.g. blueprint setup, config options, etc.)*
 
-## Usage
+## Options
 
-Now you are ready to use the new field `translations` in your blueprints.
+*Document the options and APIs that this plugin offers*
 
-```
-...
-fields:
-  mytranslations:
-    type: translations
-...
-```
+## Development
 
-### Optional settings
+*Add instructions on how to help working on the plugin (e.g. npm setup, Composer dev dependencies, etc.)*
 
-If you like, you can disable the checkbox (and with it the orange status) and/or the possibility to delete or update translations with the following setup.
+## License
 
-```
-...
-fields:
-  mytranslations:
-    type: translations
-    deletable: false
-    updatable: false
-    uptodate: false
-...
-```
-
-### Filter translated pages
-
-If you want to filter your pages and ignore untranslated ones you can do it this way – `mytranslations` is the key of the translations field:
-
-```
-<?php
-  $translatedPages = $pages->visible()->filterBy('mytranslations', '1')->filter(function($p) {
-    return $p->content(site()->language()->code())->exists();
-  });
-?>
-```
-
-### Configuration options
-
-If you want to add and/or rename the labels used throughout the plugin add an array like this to your config:
-
-```
-c::set('translations.translation', [
-  'en' => [
-    'lbl_is_up_to_date' => 'Custom up to date label',
-  ],
-  'de' => [
-    'btn_delete' => 'Lösch mich!',
-  ],
-]);
-```
-
-Available labels can be found in the `languages.php` file of the translations field.
-
-When you add a new language, please keep in mind that your array key has to be the same as your Kirby `language.code` value.
-
-## Roadmap and ideas
-
-- [ ] add widget with list of untranslated pages (in progress)
-- [ ] add widget with translations overview
-- [ ] add translations for text
-- [x] ~~option to activate/deactivate up to date checkbox~~
-- [x] ~~option to activate/deactivate delete functionality~~
-- [x] ~~add filtering example to README~~
+MIT
 
 ## Credits
 
-Thanks to [Sylvain](https://github.com/sylvainjule) for the idea and the development of the sync functionality.
+- [Your Name](https://github.com/ghost)
