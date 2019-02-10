@@ -29,8 +29,6 @@ panel.plugin('flokosiol/translations', {
           this.revertable   = response.revertable;
           this.translations = response.translations;
 
-          // console.log(language);
-
           // loop through all panel languages
           let languages = this.languages;
           for (let i = 0; i < languages.length; i++) {
@@ -47,9 +45,19 @@ panel.plugin('flokosiol/translations', {
             }
           }
         });
+
       },
       methods: {
         change(language) {
+          // #FIXME: disable deletable + revertable when using the default language switcher
+          if (language.code === this.defaultLanguage.code || this.translations.indexOf(language.code) < 0) {
+            this.deletable = false;
+            this.revertable = false;
+          }
+          else {
+            this.deletable = true;
+            this.revertable = true;
+          }
           this.$store.dispatch("languages/current", language);
           this.$emit("change", language);
         },
@@ -94,11 +102,11 @@ panel.plugin('flokosiol/translations', {
         <div class="k-field k-translations-field">
           <div v-if="languages.length">
             <k-button-group>
-              <k-button icon="check" theme="positive" :key="defaultLanguage.code" @click="change(defaultLanguage)">
+              <k-button icon="check" :class="{'translations--active': defaultLanguage.code === language.code }" theme="positive" :key="defaultLanguage.code" @click="change(defaultLanguage)">
                   {{ defaultLanguage.name }}
               </k-button>
-              <k-button v-for="language in languages" :icon="language.icon" :theme="language.theme" :key="language.code" @click="change(language)">
-                {{ language.name }}
+              <k-button v-for="lang in languages" :class="{'translations--active': lang.code === language.code }" :icon="lang.icon" :theme="lang.theme" :key="lang.code" @click="change(lang)">
+                {{ lang.name }}
               </k-button>
             </k-button-group>
           </div>
@@ -126,7 +134,7 @@ panel.plugin('flokosiol/translations', {
             ref="revertDialog"
             :button="$t('revert')"
             theme="negative"
-            icon="trash"
+            icon="refresh"
             @submit="revertTranslationSubmit(id, language)"
           >
             <k-text v-html="$t('flokosiol.translations.revert.confirm', { code: language.code.toUpperCase() })" />
