@@ -29,6 +29,8 @@ panel.plugin('flokosiol/translations', {
           this.revertable   = response.revertable;
           this.translations = response.translations;
 
+          // console.log(language);
+
           // loop through all panel languages
           let languages = this.languages;
           for (let i = 0; i < languages.length; i++) {
@@ -57,8 +59,13 @@ panel.plugin('flokosiol/translations', {
         deleteTranslationSubmit(id, language) {
           this.$api.post('flokosiol/translations/delete', {id: id, languageCode: language.code})
             .then(response => {
-              console.log(response);
               this.$refs.deleteDialog.close();
+              if (response.code === 200) {
+                this.$store.dispatch('notification/success', response.text);
+              }
+              else {
+                this.$store.dispatch('notification/error', response.text);
+              }
             })
             .catch(error => {
               this.$store.dispatch('notification/error', error);
@@ -70,8 +77,13 @@ panel.plugin('flokosiol/translations', {
         revertTranslationSubmit(id, language) {
           this.$api.post('flokosiol/translations/revert', {id: id, languageCode: language.code})
             .then(response => {
-              console.log(response);
               this.$refs.revertDialog.close();
+              if (response.code === 200) {
+                this.$store.dispatch('notification/success', response.text);
+              }
+              else {
+                this.$store.dispatch('notification/error', response.text);
+              }
             })
             .catch(error => {
               this.$store.dispatch('notification/error', error);
@@ -93,10 +105,10 @@ panel.plugin('flokosiol/translations', {
 
           <k-button-group>
             <k-button v-if="deletable" icon="trash" @click="deleteTranslationOpen(id, language)">
-              {{ $t('delete') }} {{ language.code }}
+              {{ $t('delete') }} {{ language.code.toUpperCase() }}
             </k-button>
             <k-button v-if="revertable" icon="refresh" @click="revertTranslationOpen(id, language)">
-              {{ $t('revert') }} {{ language.code }}
+              {{ $t('revert') }} {{ language.code.toUpperCase() }}
             </k-button>
           </k-button-group>
 
@@ -107,7 +119,7 @@ panel.plugin('flokosiol/translations', {
             icon="trash"
             @submit="deleteTranslationSubmit(id, language)"
           >
-            <k-text v-html="$t('language.delete.confirm', { name: language.name })" />
+            <k-text v-html="$t('flokosiol.translations.delete.confirm', { code: language.code.toUpperCase() })" />
           </k-dialog>
 
           <k-dialog
@@ -117,7 +129,7 @@ panel.plugin('flokosiol/translations', {
             icon="trash"
             @submit="revertTranslationSubmit(id, language)"
           >
-            <k-text v-html="$t('language.revert.confirm', { name: language.name })" />
+            <k-text v-html="$t('flokosiol.translations.revert.confirm', { code: language.code.toUpperCase() })" />
           </k-dialog>
         </div>
       `
