@@ -3,6 +3,7 @@ panel.plugin('flokosiol/translations', {
     translations: {
       data: function () {
         return {
+          id: null,
           deletable: null,
           revertable: null,
           translations: null
@@ -21,6 +22,9 @@ panel.plugin('flokosiol/translations', {
       },
       created: function() {
         this.load().then(response => {
+          // populate the data object when the section gets loaded
+          // @see https://getkirby.com/docs/reference/plugins/extensions/sections#vue-component
+          this.id           = response.id;
           this.deletable    = response.deletable;
           this.revertable   = response.revertable;
           this.translations = response.translations;
@@ -47,22 +51,31 @@ panel.plugin('flokosiol/translations', {
           this.$store.dispatch("languages/current", language);
           this.$emit("change", language);
         },
-        deleteTranslationOpen(language) {
-          this.$refs.dialog.open(language);
+        deleteTranslationOpen(id, language) {
+          this.$refs.deleteDialog.open(id, language);
         },
-        deleteTranslationSubmit(language) {
-          console.log(language.code);
-          this.$api.post('flokosiol/translations/delete', {languageCode: language.code})
+        deleteTranslationSubmit(id, language) {
+          this.$api.post('flokosiol/translations/delete', {id: id, languageCode: language.code})
             .then(response => {
               console.log(response);
-              this.$refs.dialog.close();
+              this.$refs.deleteDialog.close();
             })
             .catch(error => {
               this.$store.dispatch('notification/error', error);
             });
         },
-        revertTranslation(language) {
-          return;
+        revertTranslationOpen(id, language) {
+          this.$refs.revertDialog.open(id, language);
+        },
+        revertTranslationSubmit(id, language) {
+          this.$api.post('flokosiol/translations/revert', {id: id, languageCode: language.code})
+            .then(response => {
+              console.log(response);
+              this.$refs.revertDialog.close();
+            })
+            .catch(error => {
+              this.$store.dispatch('notification/error', error);
+            });
         }
       },
       template: `
@@ -79,22 +92,32 @@ panel.plugin('flokosiol/translations', {
           </div>
 
           <k-button-group>
-            <k-button v-if="deletable" icon="trash" @click="deleteTranslationOpen(language)">
-              Delete {{ language.code }}
+            <k-button v-if="deletable" icon="trash" @click="deleteTranslationOpen(id, language)">
+              {{ $t('delete') }} {{ language.code }}
             </k-button>
-            <k-button v-if="revertable" icon="refresh" @click="revertTranslation(language)">
-              Revert {{ language.code }}
+            <k-button v-if="revertable" icon="refresh" @click="revertTranslationOpen(id, language)">
+              {{ $t('revert') }} {{ language.code }}
             </k-button>
           </k-button-group>
 
           <k-dialog
-            ref="dialog"
+            ref="deleteDialog"
             :button="$t('delete')"
             theme="negative"
             icon="trash"
-            @submit="deleteTranslationSubmit(language)"
+            @submit="deleteTranslationSubmit(id, language)"
           >
             <k-text v-html="$t('language.delete.confirm', { name: language.name })" />
+          </k-dialog>
+
+          <k-dialog
+            ref="revertDialog"
+            :button="$t('revert')"
+            theme="negative"
+            icon="trash"
+            @submit="revertTranslationSubmit(id, language)"
+          >
+            <k-text v-html="$t('language.revert.confirm', { name: language.name })" />
           </k-dialog>
         </div>
       `

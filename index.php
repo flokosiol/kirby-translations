@@ -14,6 +14,9 @@ Kirby::plugin('flokosiol/translations', [
                 }
             ],
             'computed' => [
+                'id' => function () {
+                    return $this->model()->id();
+                },
                 'translations' => function () {
                     $translatedContent = [];
                     if ($translations = $this->model()->translations()) {
@@ -34,11 +37,23 @@ Kirby::plugin('flokosiol/translations', [
                 'pattern' => 'flokosiol/translations/delete',
                 'method'  => 'POST',
                 'action'  => function () {
+                    $id = get('id');
                     $languageCode = get('languageCode');
-                    $page = get('page');
                     return [
                         'code' => 200,
-                        'status' => $languageCode . ' deleted'
+                        'status' => $languageCode . ' deleted.'
+                    ];
+                }
+            ],
+            [
+                'pattern' => 'flokosiol/translations/revert',
+                'method'  => 'POST',
+                'action'  => function () {
+                    $id = get('id');
+                    $languageCode = get('languageCode');
+                    return [
+                        'code' => 200,
+                        'status' => $languageCode . ' reverted.'
                     ];
                 }
             ]

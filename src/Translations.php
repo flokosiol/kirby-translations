@@ -1,8 +1,7 @@
 <?php
 
-namespace Flokosiol\Translations;
+namespace Flokosiol;
 
 class Translations
 {
-
 }
