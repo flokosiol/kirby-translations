@@ -40,7 +40,7 @@ panel.plugin('flokosiol/translations', {
               this.languages[i].theme = 'positive';
             }
             else {
-              this.languages[i].icon = 'add';
+              this.languages[i].icon = 'cancel';
               this.languages[i].theme = 'negative';
             }
           }
