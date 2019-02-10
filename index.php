@@ -27,5 +27,21 @@ Kirby::plugin('flokosiol/translations', [
                 }
             ]
         ]
+    ],
+    'api' => [
+        'routes' => [
+            [
+                'pattern' => 'flokosiol/translations/delete',
+                'method'  => 'POST',
+                'action'  => function () {
+                    $languageCode = get('languageCode');
+                    $page = get('page');
+                    return [
+                        'code' => 200,
+                        'status' => $languageCode . ' deleted'
+                    ];
+                }
+            ]
+        ],
     ]
 ]);

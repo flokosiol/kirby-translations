@@ -46,6 +46,23 @@ panel.plugin('flokosiol/translations', {
         change(language) {
           this.$store.dispatch("languages/current", language);
           this.$emit("change", language);
+        },
+        deleteTranslationOpen(language) {
+          this.$refs.dialog.open(language);
+        },
+        deleteTranslationSubmit(language) {
+          console.log(language.code);
+          this.$api.post('flokosiol/translations/delete', {languageCode: language.code})
+            .then(response => {
+              console.log(response);
+              this.$refs.dialog.close();
+            })
+            .catch(error => {
+              this.$store.dispatch('notification/error', error);
+            });
+        },
+        revertTranslation(language) {
+          return;
         }
       },
       template: `
@@ -61,12 +78,24 @@ panel.plugin('flokosiol/translations', {
             </k-button-group>
           </div>
 
-          <div v-if="deletable">
-            {{deletable}}
-          </div>
-          <div v-if="revertable">
-            {{revertable}}
-          </div>
+          <k-button-group>
+            <k-button v-if="deletable" icon="trash" @click="deleteTranslationOpen(language)">
+              Delete {{ language.code }}
+            </k-button>
+            <k-button v-if="revertable" icon="refresh" @click="revertTranslation(language)">
+              Revert {{ language.code }}
+            </k-button>
+          </k-button-group>
+
+          <k-dialog
+            ref="dialog"
+            :button="$t('delete')"
+            theme="negative"
+            icon="trash"
+            @submit="deleteTranslationSubmit(language)"
+          >
+            <k-text v-html="$t('language.delete.confirm', { name: language.name })" />
+          </k-dialog>
         </div>
       `
     }
