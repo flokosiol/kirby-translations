@@ -76,7 +76,7 @@ panel.plugin('flokosiol/translations', {
               this.$refs.deleteDialog.close();
               if (response.code === 200) {
                 this.$store.dispatch('notification/success', response.text);
-                this.updateButtons();
+                this.changeLanguage(this.defaultLanguage);
               }
               else {
                 this.$store.dispatch('notification/error', response.text);
@@ -95,6 +95,7 @@ panel.plugin('flokosiol/translations', {
               this.$refs.revertDialog.close();
               if (response.code === 200) {
                 this.$store.dispatch('notification/success', response.text);
+                this.updateButtons();
               }
               else {
                 this.$store.dispatch('notification/error', response.text);
