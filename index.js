@@ -21,43 +21,49 @@ panel.plugin('flokosiol/translations', {
         }
       },
       created: function() {
-        this.load().then(response => {
-          // populate the data object when the section gets loaded
-          // @see https://getkirby.com/docs/reference/plugins/extensions/sections#vue-component
-          this.id           = response.id;
-          this.deletable    = response.deletable;
-          this.revertable   = response.revertable;
-          this.translations = response.translations;
-
-          // loop through all panel languages
-          let languages = this.languages;
-          for (let i = 0; i < languages.length; i++) {
-            let languageCode = languages[i].code;
-
-            // check if page is translated for this language
-            if (this.translations.indexOf(languageCode) >= 0) {
-              this.languages[i].icon = 'check';
-              this.languages[i].theme = 'positive';
-            }
-            else {
-              this.languages[i].icon = 'cancel';
-              this.languages[i].theme = 'negative';
-            }
-          }
-        });
-
+        this.updateButtons();
+        this.$events.$on("model.save", this.updateButtons);
+        this.$events.$on("model.update", this.updateButtons);
       },
       methods: {
-        change(language) {
-          // #FIXME: disable deletable + revertable when using the default language switcher
-          if (language.code === this.defaultLanguage.code || this.translations.indexOf(language.code) < 0) {
-            this.deletable = false;
-            this.revertable = false;
-          }
-          else {
-            this.deletable = true;
-            this.revertable = true;
-          }
+        updateButtons() {
+          this.load().then(response => {
+            // populate the data object when the section gets loaded
+            // @see https://getkirby.com/docs/reference/plugins/extensions/sections#vue-component
+            this.id           = response.id;
+            this.deletable    = response.deletable;
+            this.revertable   = response.revertable;
+            this.translations = response.translations;
+
+            // loop through all panel languages (but default)
+            let languages = this.languages;
+            for (let i = 0; i < languages.length; i++) {
+              // set icon + color if page is translated
+              if (this.translations.indexOf(languages[i].code) >= 0) {
+                this.languages[i].icon = 'check';
+                this.languages[i].theme = 'positive';
+              }
+              else {
+                this.languages[i].icon = 'cancel';
+                this.languages[i].theme = 'negative';
+              }
+            }
+
+            // hide actions (delete + revert) for default language + untranslated languages
+            if (this.language.code === this.defaultLanguage.code || this.translations.indexOf(this.language.code) < 0) {
+              this.deletable = false;
+              this.revertable = false;
+            }
+            else {
+              this.deletable = true;
+              this.revertable = true;
+            }
+          });
+        },
+        changeLanguage(language) {
+          this.updateButtons();
+
+          // execute language change
           this.$store.dispatch("languages/current", language);
           this.$emit("change", language);
         },
@@ -70,6 +76,7 @@ panel.plugin('flokosiol/translations', {
               this.$refs.deleteDialog.close();
               if (response.code === 200) {
                 this.$store.dispatch('notification/success', response.text);
+                this.updateButtons();
               }
               else {
                 this.$store.dispatch('notification/error', response.text);
@@ -102,10 +109,10 @@ panel.plugin('flokosiol/translations', {
         <div class="k-field k-translations-field">
           <div v-if="languages.length">
             <k-button-group>
-              <k-button icon="check" :class="{'translations--active': defaultLanguage.code === language.code }" theme="positive" :key="defaultLanguage.code" @click="change(defaultLanguage)">
+              <k-button icon="check" :class="{'translations--active': defaultLanguage.code === language.code }" theme="positive" :key="defaultLanguage.code" @click="changeLanguage(defaultLanguage)">
                   {{ defaultLanguage.name }}
               </k-button>
-              <k-button v-for="lang in languages" :class="{'translations--active': lang.code === language.code }" :icon="lang.icon" :theme="lang.theme" :key="lang.code" @click="change(lang)">
+              <k-button v-for="lang in languages" :class="{'translations--active': lang.code === language.code }" :icon="lang.icon" :theme="lang.theme" :key="lang.code" @click="changeLanguage(lang)">
                 {{ lang.name }}
               </k-button>
             </k-button-group>

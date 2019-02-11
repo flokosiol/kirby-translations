@@ -21,7 +21,7 @@ Kirby::plugin('flokosiol/translations', [
                     $translatedContent = [];
                     if ($translations = $this->model()->translations()) {
                         foreach ($translations as $translation) {
-                            if ($translation->exists()) {
+                            if ($translation->exists() && $translation->code() != kirby()->defaultLanguage()->code()) {
                                 $translatedContent[] = $translation->code();
                             }
                         }
