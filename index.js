@@ -32,7 +32,9 @@ panel.plugin('flokosiol/translations', {
             // @see https://getkirby.com/docs/reference/plugins/extensions/sections#vue-component
             this.id           = response.id;
             this.deletable    = response.deletable;
-            this.revertable   = response.revertable;
+            // this.revertable   = response.revertable;
+            // deactivates unfinished revertable option for now
+            this.revertable   = false;
             this.translations = response.translations;
 
             // loop through all panel languages (but default)
@@ -53,10 +55,6 @@ panel.plugin('flokosiol/translations', {
             if (this.language.code === this.defaultLanguage.code || this.translations.indexOf(this.language.code) < 0) {
               this.deletable = false;
               this.revertable = false;
-            }
-            else {
-              this.deletable = true;
-              this.revertable = true;
             }
           });
         },
