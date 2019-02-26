@@ -32,7 +32,7 @@ sections:
 ## Known issues
 
 + Using the default language switcher in the Panel breaks the display of the actions (delete, revert)
-+ `revertable` option is not implemented yet 
++ `revertable` option is not implemented yet
 + `uptodate` option is not implemented (maybe will never be)
 
 
