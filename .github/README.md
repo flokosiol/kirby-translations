@@ -1,14 +1,18 @@
-## Kirby 3 Translations
+# Kirby 3 Translations
 
 This ist the first draft of the Kirby 3 version.
 
-- - -
-**DON'T USE IT IN PRODUCTION !**
-- - -
+> **It is not recommended to use it in production!**
+
+## Installation
 
 ### Download
 
-Download and copy this repository to `/site/plugins/translations`.
+Download and extract this repository, rename the folder to `translations` and drop it into the plugins folder of your Kirby 3 installation. You should end up with a folder structure like this:
+
+```
+site/plugins/translations/
+```
 
 ## Setup
 
