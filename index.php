@@ -81,8 +81,9 @@ Kirby::plugin('flokosiol/translations', [
                 'action'  => function () {
                     $id = get('id');
                     $languageCode = get('languageCode');
+                    $defaultLanguageCode = kirby()->defaultLanguage()->code();
 
-                    if (kirby()->defaultLanguage()->code() == $languageCode) {
+                    if ($languageCode == $defaultLanguageCode) {
                         return [
                             'code' => 403,
                             'text' => 'Default language textfile can not be deleted.'
@@ -90,8 +91,8 @@ Kirby::plugin('flokosiol/translations', [
                     }
 
                     if ($page = page($id)) {
-                        $data = $page->readContent();
-                        if ($page->saveTranslation($data, $languageCode, true)) {
+                        $data = $page->readContent($defaultLanguageCode);
+                        if ($page->save($data, $languageCode, true)) {
                             return [
                                 'code' => 200,
                                 'text' => $languageCode . ' reverted.'

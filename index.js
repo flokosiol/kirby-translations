@@ -32,9 +32,7 @@ panel.plugin('flokosiol/translations', {
             // @see https://getkirby.com/docs/reference/plugins/extensions/sections#vue-component
             this.id           = response.id;
             this.deletable    = response.deletable;
-            // this.revertable   = response.revertable;
-            // deactivates unfinished revertable option for now
-            this.revertable   = false;
+            this.revertable   = response.revertable;
             this.translations = response.translations;
 
             // loop through all panel languages (but default)
