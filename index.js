@@ -100,6 +100,9 @@ panel.plugin('flokosiol/translations', {
             .catch(error => {
               this.$store.dispatch('notification/error', error);
             });
+
+          // reload panel to read changed textfile
+          this.$router.go();
         }
       },
       template: `
