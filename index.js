@@ -10,15 +10,32 @@ panel.plugin('flokosiol/translations', {
         }
       },
       computed: {
+        // Computed functions very similar to /panel/src/components/Navigation/Languages.vue
         defaultLanguage() {
+          // K3.6 Fiber
+          if(this.hasFiber){
+            return window.panel.$languages.find(l => l.default==true) ?? window.panel.$languages[0];
+          }
+          // Pre 3.6
           return this.$store.state.languages.default;
         },
         language() {
+          if(this.hasFiber){ // K3.6 Fiber
+            return window.panel.$language;
+          }
+          // Pre 3.6
           return this.$store.state.languages.current;
         },
         languages() {
+          if(this.hasFiber){ // K3.6 Fiber
+            return window.panel.$languages;
+          }
+          // Pre 3.6
           return this.$store.state.languages.all.filter(language => language.default === false);
-        }
+        },
+        hasFiber() {
+          return window.panel && window.panel.$languages;
+        },
       },
       created: function() {
         this.updateButtons();
@@ -60,8 +77,18 @@ panel.plugin('flokosiol/translations', {
           this.updateButtons();
 
           // execute language change
-          this.$store.dispatch("languages/current", language);
-          this.$emit("change", language);
+          if( this.hasFiber ){ // K3.6 method
+            this.$emit("change", language);
+            this.$go(this.$view.path, {
+              query: {
+                language: language.code
+              }
+            });
+          }
+          else { // K3.5 and below
+            this.$store.dispatch("languages/current", language);
+            this.$emit("change", language);
+          }
         },
         deleteTranslationOpen(id, language) {
           this.$refs.deleteDialog.open(id, language);
@@ -92,6 +119,8 @@ panel.plugin('flokosiol/translations', {
               if (response.code === 200) {
                 this.$store.dispatch('notification/success', response.text);
                 this.updateButtons();
+
+                if(this.hasFiber) this.$go(this.$view.path); // K3.6+
               }
               else {
                 this.$store.dispatch('notification/error', response.text);
@@ -102,7 +131,7 @@ panel.plugin('flokosiol/translations', {
             });
 
           // reload panel to read changed textfile
-          this.$router.go();
+          if(!this.hasFiber) this.$router.go();
         }
       },
       template: `
@@ -112,7 +141,7 @@ panel.plugin('flokosiol/translations', {
               <k-button icon="check" :class="{'translations--active': defaultLanguage.code === language.code }" theme="positive" :key="defaultLanguage.code" @click="changeLanguage(defaultLanguage)">
                   {{ defaultLanguage.name }}
               </k-button>
-              <k-button v-for="lang in languages" :class="{'translations--active': lang.code === language.code }" :icon="lang.icon" :theme="lang.theme" :key="lang.code" @click="changeLanguage(lang)">
+              <k-button v-for="lang in languages" :class="{'translations--active': lang.code === language.code }" :icon="lang.icon" :theme="lang.theme" :key="lang.code" @click="changeLanguage(lang)" v-if="defaultLanguage.code != lang.code">
                 {{ lang.name }}
               </k-button>
             </k-button-group>
