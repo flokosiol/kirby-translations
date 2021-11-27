@@ -37,8 +37,11 @@ site/plugins/translations/
 
 ### Composer
 
-Coming soon.
+If you are using Composer, you can install the plugin with
 
+```
+composer require flokosiol/translations
+```
 
 ### Git submodule
 
