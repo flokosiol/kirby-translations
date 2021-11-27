@@ -1,6 +1,6 @@
 # Kirby Translations
 
-![Version](https://img.shields.io/badge/Version-3.0.1-blue.svg) ![License](https://img.shields.io/badge/License-MIT-green.svg) ![Kirby](https://img.shields.io/badge/Kirby-3.x-f0c674.svg)
+![Version](https://img.shields.io/badge/Version-1.0.1-blue.svg) ![License](https://img.shields.io/badge/License-MIT-green.svg) ![Kirby](https://img.shields.io/badge/Kirby-3.x-f0c674.svg)
 
 This plugin enhaces the translation handling of pages for [Kirby CMS](http://getkirby.com) with the following features:
 
