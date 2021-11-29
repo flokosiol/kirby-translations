@@ -177,41 +177,22 @@ panel.plugin('flokosiol/translations', {
       },
       template: `
         <div :class="{'portaled': portaled, 'k-field':true, 'k-translations-field':true}">
-          <div v-if="languages.length && !compactModeEnabled">
-            <k-button-group class="k-translations-buttons">
-                <k-button icon="check" :class="getLangButtonClass(defaultLanguage)" theme="positive" :key="defaultLanguage.code" @click.stop="menuLanguageClick(defaultLanguage)">
-                    {{ defaultLanguage.name }}
-                </k-button>
-                <k-button v-for="lang in languages" :class="getLangButtonClass(lang)" :icon="lang.icon" :theme="lang.theme" :key="lang.code" @click.stop="menuLanguageClick(lang)">
-                  {{ lang.name }}
-                </k-button>
-            </k-button-group>
-          </div>
           
-          <k-button-group v-if="!compactModeEnabled" class="k-translations-options">
-            <k-button v-if="deletable" icon="trash" @click.stop="deleteTranslationOpen(id, language)">
-              {{ $t('delete') }} {{ language.code.toUpperCase() }}
-            </k-button>
-            <k-button v-if="revertable" icon="refresh" @click.stop="revertTranslationOpen(id, language)">
-              {{ $t('revert') }} {{ language.code.toUpperCase() }}
-            </k-button>
-          </k-button-group>
-
-          <k-button-group v-if="languages.length && compactModeEnabled" class="k-translations-buttons">
+          <k-button-group v-if="languages.length" class="k-translations-buttons">
             <portal :selector="portalSelector" :disabled="!portaled">
-              <k-button :data-langcode="defaultLanguage.code" icon="check" :class="getLangButtonClass(defaultLanguage, {'k-languages-dropdown': true, 'k-translations-languages-dropdown': true})" theme="positive" :key="defaultLanguage.code" @click.stop="menuLanguageClick(defaultLanguage)" :responsive="true">
-                  <span class="longname">{{ defaultLanguage.name }}</span>
-                  <span class="shortname">{{ defaultLanguage.code }}</span>
+              <k-button :data-langcode="defaultLanguage.code" icon="check" :class="getLangButtonClass(defaultLanguage, {'k-languages-dropdown': true, 'k-translations-languages-dropdown': true})" theme="positive" :key="defaultLanguage.code" @click.stop="menuLanguageClick(defaultLanguage)" :responsive="compactModeEnabled">
+                  <span :class="{'longname':compactModeEnabled}">{{ defaultLanguage.name }}</span>
+                  <span class="shortname" v-if="compactModeEnabled">{{ defaultLanguage.code }}</span>
               </k-button>
             </portal>
             <portal :selector="portalSelector" v-for="lang in languages" :key="lang.code" :disabled="!portaled">
                 <k-dropdown :class="getLangButtonClass(lang, {'k-languages-dropdown': true, 'k-translations-languages-dropdown': true})">
-                  <k-button class="k-translations-button" :icon="lang.icon" :theme="lang.theme" @click.stop="menuLanguageClick(lang)" :responsive="true">
-                    <span class="longname">{{ lang.name }}</span>
-                    <span class="shortname">{{ lang.code }}</span>
-                    <k-icon class="k-translations-menu-icon" type="angle-down" v-if="language.code == lang.code" />
+                  <k-button class="k-translations-button" :icon="lang.icon" :theme="lang.theme" @click.stop="menuLanguageClick(lang)" :responsive="compactModeEnabled">
+                    <span :class="{'longname':compactModeEnabled}">{{ lang.name }}</span>
+                    <span v-if="compactModeEnabled" class="shortname">{{ lang.code }}</span>
+                    <k-icon v-if="compactModeEnabled && language.code == lang.code" class="k-translations-menu-icon" type="angle-down" />
                   </k-button>
-                  <k-dropdown-content class="k-translations-options" ref="languageOptionsToggle" v-if="lang.code === language.code">
+                  <k-dropdown-content v-if="compactModeEnabled && (lang.code === language.code)" class="k-translations-options" ref="languageOptionsToggle">
                     <k-button-group>
                       <k-dropdown-item v-if="deletable" icon="trash" @click.stop="deleteTranslationOpen(id, language)">
                         {{ $t('delete') }} {{ language.code.toUpperCase() }}
@@ -223,6 +204,15 @@ panel.plugin('flokosiol/translations', {
                   </k-dropdown-content>
                 </k-dropdown>
               </portal>
+          </k-button-group>
+          
+          <k-button-group v-if="!compactModeEnabled" class="k-translations-options">
+            <k-button v-if="deletable" icon="trash" @click.stop="deleteTranslationOpen(id, language)">
+              {{ $t('delete') }} {{ language.code.toUpperCase() }}
+            </k-button>
+            <k-button v-if="revertable" icon="refresh" @click.stop="revertTranslationOpen(id, language)">
+              {{ $t('revert') }} {{ language.code.toUpperCase() }}
+            </k-button>
           </k-button-group>
 
           <k-dialog
