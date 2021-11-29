@@ -78,7 +78,25 @@ sections:
     revertable: false
 ```
 
-Of course, you can combine both options.
+To replace kirby's default language switcher in the header, do … 
+
+```yaml
+sections:
+  translations:
+    type: translations
+    portaled: false
+```
+
+To use a more compact layout, do … *(automatically enabled if portaled)*
+
+```yaml
+sections:
+  translations:
+    type: translations
+    compactmode: true
+```
+
+Of course, you can combine all options.
 
 ## Known issues
 

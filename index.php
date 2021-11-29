@@ -9,6 +9,12 @@ Kirby::plugin('flokosiol/translations', [
                 },
                 'revertable' => function (bool $revertable = true) {
                     return $revertable;
+                },
+                'portaled' => function (bool $portaled = false) {
+                    return $portaled;
+                },
+                'compactmode' => function (bool $compactmode = false) {
+                    return $compactmode;
                 }
             ],
             'computed' => [
