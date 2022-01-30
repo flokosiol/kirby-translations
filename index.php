@@ -45,9 +45,12 @@ Kirby::plugin('flokosiol/translations', [
                         ];
                     }
 
-                    if ($page = page($id)) {
-                        $fileName = $page->contentFileName($languageCode) . '.' . $languageCode . '.' . $page->contentFileExtension();
-                        $filePath = $page->root() . DS .$fileName;
+                    // $id is null, if translation field ist used in site.yml
+                    $entity = page($id) ?? site();
+
+                    if (isset($entity)) {
+                        $fileName = $entity->contentFileName($languageCode) . '.' . $languageCode . '.' . $entity->contentFileExtension();
+                        $filePath = $entity->root() . DS .$fileName;
                         if (F::exists($filePath)) {
                             if (F::remove($filePath)) {
                                 return [
@@ -90,9 +93,12 @@ Kirby::plugin('flokosiol/translations', [
                         ];
                     }
 
-                    if ($page = page($id)) {
-                        $data = $page->readContent($defaultLanguageCode);
-                        if ($page->save($data, $languageCode, true)) {
+                    // $id is null, if translation field ist used in site.yml
+                    $entity = page($id) ?? site();
+
+                    if (isset($entity)) {
+                        $data = $entity->readContent($defaultLanguageCode);
+                        if ($entity->save($data, $languageCode, true)) {
                             return [
                                 'code' => 200,
                                 'text' => $languageCode . ' reverted.'
