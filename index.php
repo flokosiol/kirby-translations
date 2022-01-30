@@ -1,6 +1,12 @@
 <?php
 
-Kirby::plugin('flokosiol/translations', [
+namespace daandelange\Translations;
+
+use Kirby\Cms\App;
+
+@include_once __DIR__ . '/vendor/autoload.php';
+
+App::plugin('daandelange/translations', [
     'sections' => [
         'translations' => [
             'props' => [
@@ -38,7 +44,7 @@ Kirby::plugin('flokosiol/translations', [
     'api' => [
         'routes' => [
             [
-                'pattern' => 'flokosiol/translations/delete',
+                'pattern' => 'daandelange/translations/delete',
                 'method'  => 'POST',
                 'action'  => function () {
                     $id = get('id');
@@ -82,7 +88,7 @@ Kirby::plugin('flokosiol/translations', [
                 }
             ],
             [
-                'pattern' => 'flokosiol/translations/revert',
+                'pattern' => 'daandelange/translations/revert',
                 'method'  => 'POST',
                 'action'  => function () {
                     $id = get('id');
@@ -115,12 +121,12 @@ Kirby::plugin('flokosiol/translations', [
     ],
     'translations' => [
         'en' => [
-            'flokosiol.translations.delete.confirm' => 'Do you really want to delete the content of this language ({code})?',
-            'flokosiol.translations.revert.confirm' => 'Do you really want to revert the content to the current state of the default language?',
+            'daandelange.translations.delete.confirm' => 'Do you really want to delete the content of this language ({code})?',
+            'daandelange.translations.revert.confirm' => 'Do you really want to revert the content to the current state of the default language?',
         ],
         'de' => [
-            'flokosiol.translations.delete.confirm' => 'Möchtest Du wirklich den Inhalt dieser Sprache ({code}) löschen?',
-            'flokosiol.translations.revert.confirm' => 'Möchtest Du wirklich den Inhalt auf den aktuellen Stand der Standardsprache zurücksetzen?',
+            'daandelange.translations.delete.confirm' => 'Möchtest Du wirklich den Inhalt dieser Sprache ({code}) löschen?',
+            'daandelange.translations.revert.confirm' => 'Möchtest Du wirklich den Inhalt auf den aktuellen Stand der Standardsprache zurücksetzen?',
         ]
     ]
 ]);

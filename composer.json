@@ -1,16 +1,37 @@
 {
-    "name": "flokosiol/translations",
-    "description": "Extended translations handling for Kirby CMS",
-    "version": "1.0.1",
+    "name": "daandelange/k3-translations",
+    "description": "Translations field and section for Kirby 3",
+    "homepage": "https://github.com/Daandelange/k3-translations",
+    "version": "0.1.0-beta",
     "type": "kirby-plugin",
     "license": "MIT",
     "authors": [
         {
             "name": "Flo Kosiol",
-            "email": "git@flokosiol.de"
+            "email": "git@flokosiol.de",
+            "role": "Original plugin author"
+        },
+        {
+            "name": "Daan de Lange",
+            "role": "Developer"
         }
+    ],
+    "keywords": [
+        "kirby3",
+        "kirby3-plugin",
+        "kirby3-field",
+        "kirby3-section",
+        "translations"
     ],
     "require": {
         "getkirby/composer-installer": "^1.1"
+    },
+    "config": {
+        "allow-plugins": {
+            "getkirby/composer-installer": true
+        }
+    },
+    "extra": {
+        "installer-name": "translations"
     }
 }

@@ -1,8 +1,10 @@
 # Kirby Translations
 
+Beta : This is a work in progress port of translations to Kirby 3. The "saved" state of a field is not yet enabled.
+
 ![Version](https://img.shields.io/badge/Version-1.0.1-blue.svg) ![License](https://img.shields.io/badge/License-MIT-green.svg) ![Kirby](https://img.shields.io/badge/Kirby-3.x-f0c674.svg)
 
-This plugin enhaces the translation handling of pages for [Kirby CMS](http://getkirby.com) with the following features:
+This plugin enhances the translation handling of pages for [Kirby 3](http://getkirby.com) with the following features:
 
 ## How it works
 
@@ -14,16 +16,12 @@ The plugin automatically detects if there's a language `.txt` file for the curre
 For all non-default languages you can:
 
 - delete a translation (without deleting the whole page)
-- resynchronize translations with the default language file
+- resynchronise translations with the default language file
 
 
 ## Commercial Usage
 
-This plugin is free but if you use it in a commercial project please consider to.
-
-+ [make a donation](https://www.paypal.me/flokosiol/10) or
-+ [buy a Kirby license using this affiliate link](https://a.paddle.com/v2/click/1129/36201?link=1170)
-
+This plugin is free but if you use it in a commercial project please consider to contribute improvement or hire someone to do so.
 
 ## Installation
 
@@ -40,13 +38,13 @@ site/plugins/translations/
 If you are using Composer, you can install the plugin with
 
 ```
-composer require flokosiol/translations
+composer require daandelange/k3-translations
 ```
 
 ### Git submodule
 
 ```
-git submodule add https://github.com/flokosiol/kirby-translations.git site/plugins/translations
+git submodule add https://github.com/daandelange/k3-translations.git site/plugins/translations
 ```
 
 
@@ -60,7 +58,7 @@ sections:
     type: translations
 ```
 
-To disable the possibillity to delete language textfiles you can use …
+To disable the possibility to delete language textfiles you can use …
 
 ```yaml
 sections:
@@ -69,7 +67,7 @@ sections:
     deletable: false
 ```
 
-To disable the possibillity to revert the content of a language textfile to the default language do …
+To disable the possibility to revert the content of a language textfile to the default language do …
 
 ```yaml
 sections:
@@ -78,7 +76,7 @@ sections:
     revertable: false
 ```
 
-To replace kirby's default language switcher in the header, do … 
+To replace kirby's default language switcher in the header, do …
 
 ```yaml
 sections:
@@ -103,12 +101,25 @@ Of course, you can combine all options.
 For Kirby 3.5 and before, using the default language switcher in the Panel breaks the display of the actions (delete, revert), but this should be fixed for Kirby 3.6+
 
 
+## Development
+
+This plugin follows the [standard Kirby PluginKit](https://github.com/getkirby/pluginkit/tree/4-panel) structure, see [their plugin guide](https://getkirby.com/docs/guide/plugins/plugin-setup-basic) for more details on using it.
+*These steps are optional, for building development versions.*
+
+- Npm requirements (optional) : `npm install -g kirbyup`
+- Setup                       : `cd /path/to/website/site/plugins/translations && npm install`
+- While developing            : `npm run dev`
+- Compile a production build  : `npm run build`
+- Update dependencies         : `npm update`
+- Composer install & update   : `composer update`
+
+
 ## License
 
-[MIT](https://github.com/flokosiol/kirby-translations/blob/main/LICENSE)
+[MIT](https://github.com/daandelange/k3-translations/blob/main/.github/LICENSE)
 
-It is discouraged to use this plugin in any project that promotes racism, sexism, homophobia, animal abuse, violence or any other form of hate speech.
 
 ## Credits
 
-Special thanks to all [contributors](https://github.com/flokosiol/kirby-translations/main/contributors)!
+This is the Kirby3 port of @Flokosiol's [kirby-translations](https://github.com/flokosiol/kirby-translations) for Kirby 2.
+Special thanks to all [contributors](https://github.com/daandelange/k3-translations/graph/contributors)!

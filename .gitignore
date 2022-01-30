@@ -1,2 +1,16 @@
 # OS files
 .DS_Store
+
+# npm modules
+/node_modules
+
+# Parcel cache folder
+.cache
+
+# Composer files
+#/vendor
+/vendor/**/.git
+
+# Locks
+package-lock.json
+composer.lock

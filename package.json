@@ -1,0 +1,19 @@
+{
+  "name": "Translations",
+  "version": "0.1.0-beta",
+  "description": "Translations field and section for Kirby 3",
+  "main": "index.js",
+  "author": "Daan de Lange",
+  "license": "MIT",
+  "repository": "https://github.com/Daandelange/k3-translations",
+  "scripts": {
+    "dev": "kirbyup src/index.js --watch",
+    "build": "kirbyup src/index.js"
+  },
+  "posthtml": {
+    "recognizeSelfClosing": true
+  },
+  "devDependencies": {
+    "kirbyup": "^0.18.0"
+  }
+}
