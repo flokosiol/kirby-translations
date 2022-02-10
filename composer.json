@@ -23,6 +23,11 @@
         "kirby3-section",
         "translations"
     ],
+    "autoload": {
+        "psr-4": {
+            "daandelange\\Translations\\": "src/classes/"
+        }
+    },
     "require": {
         "getkirby/composer-installer": "^1.1"
     },

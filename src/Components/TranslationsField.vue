@@ -1,6 +1,6 @@
-
 <template>
-  <div class="k-translations-section">
+
+  <div class="k-translations-field">
     <h2 v-if="label">{{label}}</h2>
     <k-translations
       v-bind="getTranslationsProviderPropsBinding()"
@@ -26,44 +26,21 @@
 
 
   </div>
+
 </template>
 
 <script>
-
 import TranslationsProvider from "./TranslationsProvider.js";
 export const TranslationsProviderSelf = { ...TranslationsProvider };
 
 export default {
-
-  data: function(){
-    return {
-      // Override defaults
-      deletable: true,
-      revertable: true,
-    };
-  },
+  name: 'k-translations-field',
   mixins: [
     TranslationsProviderSelf,
   ],
-  created() {
-    // Ensure refreshing data on save
-    // this.$events.$on("model.save", this.updateButtons);
-    // this.$events.$on("model.update", this.updateButtons);
-  },
 };
 </script>
 
 <style lang="less">
-.k-translations-section {
-  .k-translations-buttons {
-    padding: 1rem 0;
-  }
-  .k-translations-below {
-    padding-bottom: 1rem;
-  }
-  .k-translations-below .k-button {
-    display: block;
-    width: 100%;
-  }
-}
+
 </style>

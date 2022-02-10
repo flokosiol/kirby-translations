@@ -18,10 +18,14 @@ For all non-default languages you can:
 - delete a translation (without deleting the whole page)
 - resynchronise translations with the default language file
 
+Also, the plugin offers an option to replace the kirby languages menu by an enhanced one.
 
-## Commercial Usage
 
-This plugin is free but if you use it in a commercial project please consider to contribute improvement or hire someone to do so.
+## Requirements
+This plugin works with Fiber, so you probably need Kirby 3.6.
+
+Although, there are is a chance that it works on versions below. _(if so, please report back!)_
+
 
 ## Installation
 
@@ -106,6 +110,8 @@ For Kirby 3.5 and before, using the default language switcher in the Panel break
 This plugin follows the [standard Kirby PluginKit](https://github.com/getkirby/pluginkit/tree/4-panel) structure, see [their plugin guide](https://getkirby.com/docs/guide/plugins/plugin-setup-basic) for more details on using it.
 *These steps are optional, for building development versions.*
 
+If you're using a modified Kirby folder structure, you probably have to fix the relative path to the `kirby` folder in `kirbyup.config.ts`.
+
 - Npm requirements (optional) : `npm install -g kirbyup`
 - Setup                       : `cd /path/to/website/site/plugins/translations && npm install`
 - While developing            : `npm run dev`
@@ -118,8 +124,12 @@ This plugin follows the [standard Kirby PluginKit](https://github.com/getkirby/p
 
 [MIT](https://github.com/daandelange/k3-translations/blob/main/.github/LICENSE)
 
+### Commercial Usage
+
+This plugin is free but if you use it in a commercial project please consider to contribute an improvement, or hire someone to do so.
+
 
 ## Credits
 
-This is the Kirby3 port of @Flokosiol's [kirby-translations](https://github.com/flokosiol/kirby-translations) for Kirby 2.
-Special thanks to all [contributors](https://github.com/daandelange/k3-translations/graph/contributors)!
+This is a Kirby 3 port of @Flokosiol's [kirby-translations](https://github.com/flokosiol/kirby-translations) which is for Kirby 2; thanks to him for
+Special thanks to all [contributors](https://github.com/daandelange/k3-translations/graph/contributors) as well as the original [kirby2-translations contributors](https://github.com/flokosiol/kirby-translations/graphs/contributors) !

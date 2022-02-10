@@ -7,6 +7,10 @@ namespace Composer\Autoload;
 class ComposerStaticInite8a2e71485afdd4daddb9b2232e6030d
 {
     public static $prefixLengthsPsr4 = array (
+        'd' => 
+        array (
+            'daandelange\\Translations\\' => 25,
+        ),
         'K' => 
         array (
             'Kirby\\' => 6,
@@ -14,6 +18,10 @@ class ComposerStaticInite8a2e71485afdd4daddb9b2232e6030d
     );
 
     public static $prefixDirsPsr4 = array (
+        'daandelange\\Translations\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src/classes',
+        ),
         'Kirby\\' => 
         array (
             0 => __DIR__ . '/..' . '/getkirby/composer-installer/src',
