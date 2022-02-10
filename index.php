@@ -15,8 +15,8 @@ App::plugin('daandelange/translations', [
         'header' => [
             'replaceKirbyLanguages' => true,
             'compactMode' => true,
-            'delete' => true,
-            'revert' => true,
+            'deletable' => true,
+            'revertable' => true,
         ],
     ],
     'sections' => [

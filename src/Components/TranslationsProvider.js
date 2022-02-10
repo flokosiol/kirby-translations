@@ -50,7 +50,6 @@ export default {
         //this.$set(this, 'translationStatuses', response.translations); // Reactive ?
       }
       if(response.deletable){ // Parses options from section / field response
-        console.log('deletable=', response.deletable, this);
         this.deletable = response.deletable;
       }
       if(response.revertable){ // Parses options from section / field response
