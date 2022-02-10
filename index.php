@@ -68,7 +68,7 @@ App::plugin('daandelange/translations', [
 
                         // Parse id from $view.model
                         if(strpos($id, '/pages/')===0){
-                            $id=substr($id, strlen('/pages/'));
+                            $id=str_replace('+', '/', substr($id, strlen('/pages/')));
 
                             // Fetch page object
                             if ($page = $kirby->page($id)) {
@@ -121,7 +121,7 @@ App::plugin('daandelange/translations', [
 
                         // Parse id from $view.model
                         if(strpos($id, '/pages/')===0){
-                            $id=substr($id, strlen('/pages/'));
+                            $id=str_replace('+', '/', substr($id, strlen('/pages/')));
 
                             $page = $kirby->page($id);
                             if ( $page && $page->exists() ) {
