@@ -15,6 +15,7 @@ By default, replaces the original language switch by an enhanced one; but you ca
   - Delete a translation (without deleting the whole page).
   - Resynchronise translations with the default language file (revert).
 
+![Kirby 3 Translations plugin screenshot](translations.gif)
 
 ## Requirements
 This plugin works with Fiber, so you probably need Kirby 3.6.
