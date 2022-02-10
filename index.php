@@ -18,7 +18,6 @@ App::plugin('daandelange/translations', [
             'delete' => true,
             'revert' => true,
         ],
-
     ],
     'sections' => [
         'translations' => [

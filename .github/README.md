@@ -6,17 +6,14 @@ Beta : This is a work in progress port of translations to Kirby 3. The "saved" s
 
 This plugin enhances the translation handling of pages for [Kirby 3](http://getkirby.com) with the following features:
 
-## How it works
-
-The plugin automatically detects if there's a language `.txt` file for the current page in your content folder and displays additional language tabs. For now there are two possible states:
-
-+ **RED**: The translated `.txt`-file does not exist
-+ **GREEN**: The translated `.txt`-file exists
+- The language menu explicitly shows if the translation exists :
+  - **RED**: The translated `.txt`-file does not exist
+  - **GREEN**: The translated `.txt`-file exists
 
 For all non-default languages you can:
 
-- delete a translation (without deleting the whole page)
-- resynchronise translations with the default language file
+- Delete a translation (without deleting the whole page).
+- Resynchronise translations with the default language file (revert).
 
 Also, the plugin offers an option to replace the kirby languages menu by an enhanced one.
 
@@ -54,7 +51,21 @@ git submodule add https://github.com/daandelange/k3-translations.git site/plugin
 
 ## Setup
 
-Add the following `section` to your blueprint.
+### Replacing Kirby's native language menu
+Within your website project, you can customise the header language menu as such:
+
+```php
+// Site /site/config/config.php
+return [
+  'daandelange.translations.options.header.replaceKirbyLanguages': false, // To disable replacing the native lang menu
+  'daandelange.translations.options.header.compactMode': true, // To enable compact mode
+  'daandelange.translations.options.header.delete': false, // To disallow deleting a language
+  'daandelange.translations.options.header.revert': false, // To disallow reverting a language
+];
+```
+
+### Translations Section
+Add the following `section` to your blueprint. (optional)
 
 ```yaml
 sections:
@@ -80,16 +91,8 @@ sections:
     revertable: false
 ```
 
-To replace kirby's default language switcher in the header, do …
 
-```yaml
-sections:
-  translations:
-    type: translations
-    portaled: false
-```
-
-To use a more compact layout, do … *(automatically enabled if portaled)*
+To use a more compact layout, do …
 
 ```yaml
 sections:
@@ -99,10 +102,6 @@ sections:
 ```
 
 Of course, you can combine all options.
-
-## Known issues
-
-For Kirby 3.5 and before, using the default language switcher in the Panel breaks the display of the actions (delete, revert), but this should be fixed for Kirby 3.6+
 
 
 ## Development
