@@ -1,4 +1,12 @@
-# Kirby Translations
+# Kirby Translations (DEPRICATED)
+
+---
+
+**This version of the plugin is depricated and will no longer be maintained!** 
+
+Thankfully [@Daandelange](https://github.com/Daandelange) will take care of it in the future, so please check out https://github.com/Daandelange/k3-translations.
+
+---
 
 ![Version](https://img.shields.io/badge/Version-1.0.1-blue.svg) ![License](https://img.shields.io/badge/License-MIT-green.svg) ![Kirby](https://img.shields.io/badge/Kirby-3.x-f0c674.svg)
 
