@@ -62,7 +62,7 @@
       :button="$t('delete')"
       theme="negative"
       icon="trash"
-      @submit="deleteTranslationSubmit(language)"
+      @submit="deleteTranslationSubmit(dialogLanguage)"
     >
       <k-text v-html="$t('daandelange.translations.delete.confirm', { code: language.code.toUpperCase() })" />
     </k-dialog>
@@ -72,7 +72,7 @@
       :button="$t('revert')"
       theme="negative"
       icon="refresh"
-      @submit="revertTranslationSubmit(language)"
+      @submit="revertTranslationSubmit(dialogLanguage)"
     >
       <k-text v-html="$t('daandelange.translations.revert.confirm', { code: language.code.toUpperCase() })" />
     </k-dialog>
@@ -96,6 +96,11 @@ export default {
   // Re-using them as native components saves us the hasle of fetching them in different ways depending on the kirby installation.
   extends: 'k-languages-dropdown', // For reference, see panel/src/components/navigation/languages.vue
 
+  data() {
+    return {
+      dialogLanguage: null,
+    };
+  },
   components: {
     'k-translations-button' : TranslationsButton,
   },
@@ -217,9 +222,11 @@ export default {
       return [];
     },
     deleteTranslationOpen(language) {
-      this.$refs.deleteDialog?.open(language);
+      this.dialogLanguage = language;
+      this.$refs.deleteDialog?.open();
     },
     deleteTranslationSubmit(language) {
+      if(!(language?.code)) return;
       this.$api.post('plugin-translations/delete', {id: this.modelUrl, languageCode: language.code})
         .then(response => {
           this.$refs.deleteDialog.close();
@@ -236,15 +243,16 @@ export default {
         });
     },
     revertTranslationOpen(language) {
-      this.$refs.revertDialog?.open(language);
+      this.dialogLanguage = language;
+      this.$refs.revertDialog?.open();
     },
     revertTranslationSubmit(language) {
+      if(!(language?.code)) return;
       this.$api.post('plugin-translations/revert', {id: this.modelUrl, languageCode: language.code})
         .then(response => {
           this.$refs.revertDialog.close();
           if (response.code === 200) {
             this.$store.dispatch('notification/success', response.text);
-            this.change(response.code);
 
             if (this.hasFiber) this.$go(this.$view.path);
             //else // todo
